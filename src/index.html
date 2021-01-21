@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="./js/index.js" async defer></script>
+    <title>Weather forecast</title>
+</head>
+<body>
+    <h1>What's the weather like?</h1>
+    <form id="city-name-form" class="hidden">
+        <input type="text" placeholder="Enter city name" id="city-name-input" autocomplete="off">
+        <button type="submit">Search</button>
+    </form>
+    <section id="main-info-today">
+        <div id="city-name"></div>
+        <div id="min-max-today"></div>
+        <div id="current-temperature"></div>
+        <div id="current-time"> <div id="current-date"></div></div>
+        <div id="sunrise-time"></div>
+        <div id="sunset-time"></div>
+    </section>
+    <section id="hourly-info-today"></section>
+</body>
+</html>
