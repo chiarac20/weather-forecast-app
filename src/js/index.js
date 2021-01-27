@@ -1,19 +1,34 @@
-import cities from './cities.json';
+import {byId} from './domManager';
+import cityNameSelector from './cityNameSelector';
+import showWeather from './showWeather';
 
-const cityInputDom=document.getElementById('city-name-input');
-const cityNameFormDom=document.getElementById('city-name-form');
-let cityName;
+const mainInfoTodayDom=byId('main-info-today');
+const cityInputDom=byId('city-name-input');
+const citySelectionPageDom=byId('city-selection-page')
+
+cityNameSelector.init(onCitySelected);
 let cityNameStored=localStorage.getItem('city-name');
-
-if (!cityNameStored) {
-    cityNameFormDom.classList.remove('hidden');
+if (cityNameStored) {
+    mainInfoTodayDom.classList.remove('hidden');
+    showWeather.showWeather(cityNameStored);
+    
+} else {
+    citySelectionPageDom.classList.remove('hidden');
 }
 
 
-cityNameFormDom.addEventListener('submit', (evt)=>{
-    evt.preventDefault();
-    cityName=cityInputDom.value;
-    localStorage.setItem('city-name', cityName);
-    cityNameFormDom.classList.add('hidden');
-})
+showWeather.init(onGoBackFn)
 
+function onCitySelected(cityName) {
+    citySelectionPageDom.classList.add('hidden'); 
+    mainInfoTodayDom.classList.remove('hidden');
+    localStorage.setItem('city-name', cityName);
+    showWeather.showWeather(cityName);
+}
+
+function onGoBackFn(){
+    mainInfoTodayDom.classList.add('hidden');
+    citySelectionPageDom.classList.remove('hidden');
+    localStorage.removeItem('city-name');
+    cityInputDom.value='';
+}

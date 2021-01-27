@@ -1,3 +1,19 @@
 .hidden {
     display: none;
 }
+
+.city-list-item {
+    cursor: pointer;
+}
+
+#city-name-input, #go-back-cta, #city-name {
+    max-width: 100%;
+    padding: 20px;
+    font-size: 25px;
+    display: inline-block;
+}
+
+#main-info-today>div {
+    padding: 15px;
+    font-size: 20px;
+}
