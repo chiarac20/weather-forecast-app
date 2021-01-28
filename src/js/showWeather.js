@@ -20,6 +20,35 @@ function showWeather(cityName){
         });
 }
 
+function showTodayWeather(weatherInfo, id) {
+    console.log(weatherInfo)
+    const currentDateDom=byId('current-date');
+    const sunsetDom=byId('sunset-time');
+    const sunriseDom=byId('sunrise-time');
+    const currentTempDom=byId('current-temperature');
+    const feelsLikeDom=byId('feels-like');
+    const descriptionDom=byId('description');
+    const iconDom=byId('icon');
+    const windSpeedDom=byId('wind-speed');
+    const humidityDom=byId('humidity');
+    const weatherInfoList=weatherInfo.list[0];
+    const todayDate=weatherInfoList.dt_txt.split(' ')[0];
+    const sunriseSecs=weatherInfo.city.sunrise;
+    const sunsetSecs=weatherInfo.city.sunset;
+    const mainWeatherInfo=weatherInfoList.main;
+    const currentTemp=mainWeatherInfo.temp;
+    const todayDateShort=new Date(todayDate);
+    currentDateDom.innerText='date: '+ todayDateShort.toDateString();
+    currentTempDom.innerText='current temp: '+ currentTemp.toFixed(1) + '°C';
+    feelsLikeDom.innerText='feels like: ' + mainWeatherInfo.feels_like.toFixed(1) + '°C';
+    humidityDom.innerText='humidity: ' + mainWeatherInfo.humidity + '%';
+    descriptionDom.innerText='description: ' + weatherInfoList.weather[0].description;
+    sunriseDom.innerText='sunrise: ' + sunriseSunset(sunriseSecs).hours + ':' + sunriseSunset(sunriseSecs).minutes;
+    sunsetDom.innerText='sunset: ' + sunriseSunset(sunsetSecs).hours + ':' + sunriseSunset(sunriseSecs).minutes;
+    showMinMax(id);
+    setUpTimeUpdate()
+}
+
 function showMinMax(id) {
     return apiRequestManager.getMinMax(id)
         .then(info=>{
@@ -28,25 +57,6 @@ function showMinMax(id) {
             const max=Math.round(minMax.max)
             minMaxDom.innerText='min/max: '+ min + '°/' + max + '°';
         })
-}
-
-function showTodayWeather(weatherInfo, id) {
-    console.log(weatherInfo)
-    const currentDateDom=byId('current-date');
-    const sunsetDom=byId('sunset-time');
-    const sunriseDom=byId('sunrise-time');
-    const currentTempDom=byId('current-temperature');
-    const todayDate=weatherInfo.list[0].dt_txt.split(' ')[0];
-    const sunriseSecs=weatherInfo.city.sunrise;
-    const sunsetSecs=weatherInfo.city.sunset;
-    const currentTemp=weatherInfo.list[0].main.temp;
-    const todayDateShort=new Date(todayDate);
-    showMinMax(id);
-    currentDateDom.innerText='date: '+ todayDateShort.toDateString();
-    currentTempDom.innerText='current temp: '+ currentTemp.toFixed(1)+ '°C';
-    sunriseDom.innerText='sunrise: ' + sunriseSunset(sunriseSecs).hours + ':' + sunriseSunset(sunriseSecs).minutes;
-    sunsetDom.innerText='sunset: ' + sunriseSunset(sunsetSecs).hours + ':' + sunriseSunset(sunriseSecs).minutes;
-    setUpTimeUpdate()
 }
 
 function setUpTimeUpdate() {
