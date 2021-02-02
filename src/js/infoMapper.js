@@ -1,4 +1,4 @@
-function mapInfo(mainForecast) {
+function mapInfo(mainForecast, cityName) {
     const {sunrise: sunriseSecs, sunset: sunsetSecs} = mainForecast.city;
     const sunrise=sunriseSunset(sunriseSecs);
     const sunset=sunriseSunset(sunsetSecs);
@@ -22,11 +22,8 @@ function mapInfo(mainForecast) {
             time: time[0] + ':' + time[1]
         }
     })
-    const weatherInformation={mainInfo: mainInfo, sunrise: sunriseTime, sunset: sunsetTime}
-    localStorage.setItem('weatherInfo', JSON.stringify(weatherInformation));
-    return  {
-        weatherInfo: weatherInformation
-    }  
+    const weatherInformation={city: cityName, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
+    return weatherInformation;
 }
 
 function sunriseSunset(secs) {

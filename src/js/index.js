@@ -1,25 +1,25 @@
 import {byId} from './domManager';
 import cityNameSelector from './cityNameSelector';
 import showWeather from './showWeather';
+import localStorageManager from './manageLocalStorage'
 
 const mainInfoTodayDom=byId('main-info-today');
 const cityInputDom=byId('city-name-input');
 const citySelectionPageDom=byId('city-selection-page')
 
-
 cityNameSelector.init(onCitySelected);
-const infoStored=JSON.parse(localStorage.getItem('weatherInfo'));
-if (infoStored) {
-    const cityNameStored=infoStored.city;
+
+if (localStorage.weatherInfo) {
     mainInfoTodayDom.classList.remove('hidden');
-    showWeather.showWeather(cityNameStored);
-    
+    const weatherInfo=localStorageManager.getStoredObj('weatherInfo'); 
+    const cityName=weatherInfo.city;
+    showWeather.showWeather(cityName);  
 } else {
     citySelectionPageDom.classList.remove('hidden');
 }
 
 
-showWeather.init(onGoBackFn)
+showWeather.init(changeCityFn)
 
 function onCitySelected(cityName) {
     citySelectionPageDom.classList.add('hidden'); 
@@ -27,7 +27,7 @@ function onCitySelected(cityName) {
     showWeather.showWeather(cityName);
 }
 
-function onGoBackFn(){
+function changeCityFn(){
     mainInfoTodayDom.classList.add('hidden');
     citySelectionPageDom.classList.remove('hidden');
     cityInputDom.value='';
