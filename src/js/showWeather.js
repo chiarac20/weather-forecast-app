@@ -26,13 +26,14 @@ function showWeather(cityName){
     const cityNameDom=byId('city-name');
     const cityInfo = cityInfoManager.getCityInfo(cityName);
     cityNameDom.innerText=cityInfo.name;
-    getWeatherInfo(cityInfo).then(weatherInfo => showTodayWeather(weatherInfo, cityName, cityInfo.id));
+    getWeatherInfo(cityInfo).then(weatherInfo => showTodayWeather(weatherInfo, cityInfo.id));
 }
 
 function getWeatherInfo(cityInfo) {
     const infoStored=localStorageManager.getStoredObj('weatherInfo');
-    if (infoStored && infoStored.city === cityInfo.name) {
-        console.log('info from loc storage')
+    const loggedDate=infoStored.mainInfo[0].date + infoStored.mainInfo[0].time;
+    if (infoStored && infoStored.city === cityInfo.name && compareDates(loggedDate)) {
+        console.log(compareDates(loggedDate))
         return new Promise((resolve) => resolve(infoStored))
     } else {
         return apiRequestManager.getWeatherInfo(cityInfo.id)
@@ -44,7 +45,7 @@ function getWeatherInfo(cityInfo) {
     }
 }
 
-function showTodayWeather(weatherInfo, cityName, id) {
+function showTodayWeather(weatherInfo, id) {
     const allDaysInfo=weatherInfo;
     const todayInfo=allDaysInfo.mainInfo[0];
     currentDateDom.innerText='date: '+ todayInfo.date;
@@ -70,6 +71,14 @@ function showMinMax(id) {
         })
 }
 
+function compareDates(date) {
+    const loggedDate=new Date(date);
+    const logTimestamp=loggedDate.getTime();
+    const todayDate=new Date();
+    const actualTimestamp=todayDate.getTime();
+    return actualTimestamp>logTimestamp;
+}
+
 function setUpTimeUpdate() {
     showTime();
     setInterval(showTime, 60000);
@@ -89,6 +98,7 @@ function getTimeFromDate(date) {
 function zeroFill(number) {
     return number.toString().padStart(2, '0');
 }
+
 export default {
     init,
     showWeather

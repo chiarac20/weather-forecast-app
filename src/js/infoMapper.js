@@ -12,6 +12,7 @@ function mapInfo(mainForecast, cityName) {
         const windSpeed=timeLapse.wind.speed;
         return {
             date: new Date(date).toDateString(),
+            time: time[0] + ':' + time[1],
             feels_like: timeLapse.main.feels_like.toFixed(1) + '°',
             humidity: timeLapse.main.humidity + '%',
             temperature: timeLapse.main.temp.toFixed(1) + '°',
@@ -19,7 +20,6 @@ function mapInfo(mainForecast, cityName) {
             iconUrl: 'http://openweathermap.org/img/w/' + timeLapse.weather[0].icon + '.png',
             windMph: (windSpeed * 2.237).toFixed(1) + 'Mph/',
             windKmPerHour: (windSpeed * 3.6).toFixed(1) + 'KmPerHour',
-            time: time[0] + ':' + time[1]
         }
     })
     const weatherInformation={city: cityName, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
