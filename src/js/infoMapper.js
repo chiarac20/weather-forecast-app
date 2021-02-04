@@ -1,9 +1,10 @@
-function mapInfo(mainForecast, cityName) {
+function mapInfo(mainForecast) {
     const {sunrise: sunriseSecs, sunset: sunsetSecs} = mainForecast.city;
     const sunrise=sunriseSunset(sunriseSecs);
     const sunset=sunriseSunset(sunsetSecs);
     const sunriseTime=sunrise.hours + ':' + sunrise.minutes;
     const sunsetTime=sunset.hours + ':' + sunset.minutes;
+    const id=mainForecast.city.id;
     const weatherInfo=mainForecast.list;
     const mainInfo = weatherInfo.map(timeLapse=>{ 
         const dateTime=timeLapse.dt_txt.split(' ');
@@ -22,7 +23,7 @@ function mapInfo(mainForecast, cityName) {
             windKmPerHour: (windSpeed * 3.6).toFixed(1) + 'KmPerHour',
         }
     })
-    const weatherInformation={city: cityName, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
+    const weatherInformation={id, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
     return weatherInformation;
 }
 

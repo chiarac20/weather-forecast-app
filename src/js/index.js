@@ -9,15 +9,14 @@ const citySelectionPageDom=byId('city-selection-page')
 
 cityNameSelector.init(onCitySelected);
 
-if (localStorage.weatherInfo) {
+if (localStorage.mainCityInfo) {
     mainInfoTodayDom.classList.remove('hidden');
-    const weatherInfo=localStorageManager.getStoredObj('weatherInfo'); 
-    const cityName=weatherInfo.city;
+    const mainInfo=localStorageManager.getStoredObj('mainCityInfo'); 
+    const cityName=mainInfo.city;
     showWeather.showWeather(cityName);  
 } else {
     citySelectionPageDom.classList.remove('hidden');
 }
-
 
 showWeather.init(changeCityFn)
 

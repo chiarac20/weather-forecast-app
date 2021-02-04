@@ -26,26 +26,31 @@ function showWeather(cityName){
     const cityNameDom=byId('city-name');
     const cityInfo = cityInfoManager.getCityInfo(cityName);
     cityNameDom.innerText=cityInfo.name;
-    getWeatherInfo(cityInfo).then(weatherInfo => showTodayWeather(weatherInfo, cityInfo.id));
+    const idName={id: cityInfo.id, city: cityInfo.name};
+    localStorageManager.storeObj('mainCityInfo', idName);
+    getWeatherInfo(cityInfo).then(weatherInfo => showTodayWeather(weatherInfo));
+    getMinMax(cityInfo.id).then(minMaxInfo=>showMinMax(minMaxInfo))
 }
 
 function getWeatherInfo(cityInfo) {
-    const infoStored=localStorageManager.getStoredObj('weatherInfo');
-    const loggedDate=infoStored.mainInfo[0].date + infoStored.mainInfo[0].time;
-    if (infoStored && infoStored.city === cityInfo.name && compareDates(loggedDate)) {
-        console.log(compareDates(loggedDate))
-        return new Promise((resolve) => resolve(infoStored))
+    const mainInfoStored=localStorageManager.getStoredObj('mainCityInfo');
+    const weatherInfoStored=localStorageManager.getStoredObj('weatherInfo');
+    const loggedDate= weatherInfoStored ?
+        weatherInfoStored.mainInfo[0].date + ' ' +  weatherInfoStored.mainInfo[0].time:
+        null;
+    if (mainInfoStored && weatherInfoStored.id === cityInfo.id && isInTheFuture(loggedDate)) {
+        return Promise.resolve(weatherInfoStored);
     } else {
         return apiRequestManager.getWeatherInfo(cityInfo.id)
             .then(info=>{
-                const mappedInfo = infoMapper.mapInfo(info, cityInfo.name);
+                const mappedInfo = infoMapper.mapInfo(info);
                 localStorageManager.storeObj('weatherInfo', mappedInfo);
                 return mappedInfo;
             });
     }
 }
 
-function showTodayWeather(weatherInfo, id) {
+function showTodayWeather(weatherInfo) {
     const allDaysInfo=weatherInfo;
     const todayInfo=allDaysInfo.mainInfo[0];
     currentDateDom.innerText='date: '+ todayInfo.date;
@@ -57,26 +62,41 @@ function showTodayWeather(weatherInfo, id) {
     sunriseDom.innerText='sunrise: ' + allDaysInfo.sunrise; 
     sunsetDom.innerText='sunset: ' + allDaysInfo.sunset;
     iconDom.src=todayInfo.iconUrl;
-    showMinMax(id);
     setUpTimeUpdate(); 
 }
 
-function showMinMax(id) {
-    return apiRequestManager.getMinMax(id)
-        .then(info=>{
-            const minMax=info.list[0].temp;
-            const min=Math.round(minMax.min);
-            const max=Math.round(minMax.max);
-            minMaxDom.innerText='min/max: '+ min + '°/' + max + '°';
-        })
+function showMinMax(minMaxInfo) {
+    minMaxDom.innerText='min/max: '+ minMaxInfo.min + '°/' + minMaxInfo.max + '°';
 }
 
-function compareDates(date) {
-    const loggedDate=new Date(date);
-    const logTimestamp=loggedDate.getTime();
+function getMinMax(id) {
     const todayDate=new Date();
-    const actualTimestamp=todayDate.getTime();
-    return actualTimestamp>logTimestamp;
+    const minMaxInfo=localStorageManager.getStoredObj('minMaxInfo');
+    const storedDate= new Date(minMaxInfo.date);
+    if (minMaxInfo.id===id && storedDate.getDate()===todayDate.getDate() && storedDate.getMonth()===storedDate.getMonth()) {
+        return Promise.resolve(minMaxInfo);
+    } else {
+        return apiRequestManager.getMinMax(id)
+            .then(info=>{
+                const minMax=info.list[0].temp;
+                const min=Math.round(minMax.min);
+                const max=Math.round(minMax.max); 
+                const sec=info.list[0].dt;
+                const date=new Date(sec*1000).toDateString();
+                const minMaxInfo={id, date, min, max};
+                localStorageManager.storeObj('minMaxInfo', minMaxInfo);
+                return minMaxInfo;
+            })
+    }
+}
+
+
+
+function isInTheFuture(date) {
+    if (!date) return false;
+    const passedDate=new Date(date);
+    const now=new Date();
+    return now<passedDate;
 }
 
 function setUpTimeUpdate() {
