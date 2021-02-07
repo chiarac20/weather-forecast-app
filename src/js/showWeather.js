@@ -15,6 +15,7 @@ const descriptionDom=byId('description');
 const windSpeedDom=byId('wind-speed');
 const humidityDom=byId('humidity');
 const iconDom=byId('main-weather-icon');
+const windDirectionDom=byId('wind-direction');
 
 
 function init(onGoBackCta){
@@ -59,6 +60,7 @@ function showTodayWeather(weatherInfo) {
     humidityDom.innerText='humidity: ' + todayInfo.humidity;
     descriptionDom.innerText='description: ' + todayInfo.description;
     windSpeedDom.innerText='wind speed: ' + todayInfo.windMph + ' ' + todayInfo.windKmPerHour;
+    windDirectionDom.innerText='wind direction: ' + todayInfo.windDirection;
     sunriseDom.innerText='sunrise: ' + allDaysInfo.sunrise; 
     sunsetDom.innerText='sunset: ' + allDaysInfo.sunset;
     iconDom.src=todayInfo.iconUrl;

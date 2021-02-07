@@ -11,6 +11,7 @@ function mapInfo(mainForecast) {
         const date=dateTime[0];
         const time=dateTime[1].split(':');
         const windSpeed=timeLapse.wind.speed;
+        const windDirection= getWindDirection(timeLapse.wind.deg);
         return {
             date: new Date(date).toDateString(),
             time: time[0] + ':' + time[1],
@@ -21,6 +22,7 @@ function mapInfo(mainForecast) {
             iconUrl: 'http://openweathermap.org/img/w/' + timeLapse.weather[0].icon + '.png',
             windMph: (windSpeed * 2.237).toFixed(1) + 'Mph/',
             windKmPerHour: (windSpeed * 3.6).toFixed(1) + 'KmPerHour',
+            windDirection
         }
     })
     const weatherInformation={id, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
@@ -40,6 +42,33 @@ function getTimeFromDate(date) {
 
 function zeroFill(number) {
     return number.toString().padStart(2, '0');
+}
+
+function getWindDirection(degree) {
+    if (degree < 22.50 || degree >= 22.50*15) {
+        return 'North'; 
+    }
+    if (degree >= 22.50 && degree < 22.50*3) {
+        return 'North-East'; 
+    }
+    if (degree >= 22.50*3 && degree < 22.50*5) {
+        return 'East'; 
+    }
+    if (degree >= 22.50*5 && degree < 22.50*7) {
+        return 'South-East'; 
+    }
+    if (degree >= 22.50*7 && degree < 22.50*9) {
+        return 'South'; 
+    }
+    if (degree >= 22.50*9 && degree < 22.50*11) {
+        return 'South-West'; 
+    }
+    if (degree >= 22.50*11 && degree < 22.50*13) {
+        return 'West'; 
+    }
+    if (degree >= 22.50*13 && degree < 22.50*15) {
+        return 'North-West'; 
+    }
 }
 
 export default {
