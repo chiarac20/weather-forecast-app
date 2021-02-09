@@ -2,11 +2,13 @@ import {byId} from './domManager';
 import cityInfoManager from './cityInfo';
 import apiRequestManager from './apiRequest';
 import infoMapper from './infoMapper';
-import localStorageManager from './manageLocalStorage'
+import localStorageManager from './manageLocalStorage';
+import sunRotationManager from './sunRotation'; 
 
 const currentTimeDom=byId('current-time');
 const minMaxDom=byId('min-max-today');
 const currentDateDom=byId('current-date');
+const sunInfoDom=byId('sun-info');
 const sunsetDom=byId('sunset-time');
 const sunriseDom=byId('sunrise-time');
 const currentTempDom=byId('current-temperature');
@@ -64,6 +66,14 @@ function showTodayWeather(weatherInfo) {
     sunsetDom.innerText='sunset: ' + allDaysInfo.sunset;
     iconDom.src=todayInfo.iconUrl;
     setUpTimeUpdate(); 
+    rotateSun(allDaysInfo);
+}
+
+function rotateSun (allDaysInfo) {
+    const date= new Date();
+    const now=date.getTime();
+    const angleDegree=sunRotationManager.getAngleDegree(allDaysInfo.sunriseMillisecs, allDaysInfo.sunsetMillisecs, now);
+    sunInfoDom.style.transform=`rotate(${angleDegree}deg)`;
 }
 
 function showMinMax(minMaxInfo) {

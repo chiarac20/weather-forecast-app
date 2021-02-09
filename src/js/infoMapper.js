@@ -1,7 +1,9 @@
 function mapInfo(mainForecast) {
     const {sunrise: sunriseSecs, sunset: sunsetSecs} = mainForecast.city;
-    const sunrise=sunriseSunset(sunriseSecs);
-    const sunset=sunriseSunset(sunsetSecs);
+    const sunriseMillisecs=sunriseSecs*1000;
+    const sunsetMillisecs=sunsetSecs*1000;
+    const sunrise=sunriseSunset(sunriseMillisecs);
+    const sunset=sunriseSunset(sunsetMillisecs);
     const sunriseTime=sunrise.hours + ':' + sunrise.minutes;
     const sunsetTime=sunset.hours + ':' + sunset.minutes;
     const id=mainForecast.city.id;
@@ -25,12 +27,12 @@ function mapInfo(mainForecast) {
             windDirection
         }
     })
-    const weatherInformation={id, mainInfo, sunrise: sunriseTime, sunset: sunsetTime};
+    const weatherInformation={id, mainInfo, sunriseMillisecs, sunrise: sunriseTime, sunsetMillisecs, sunset: sunsetTime};
     return weatherInformation;
 }
 
-function sunriseSunset(secs) {
-    const date=new Date(secs*1000);
+function sunriseSunset(millisecs) {
+    const date=new Date(millisecs);
     return getTimeFromDate(date);
 }
 
