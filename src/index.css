@@ -17,3 +17,35 @@
     padding: 15px;
     font-size: 20px;
 }
+
+#main-weather-info {
+    border: 2px black solid;
+    border-radius: 50%;
+    width: 65vw;
+    height: 65vw;
+    margin: auto;
+}
+
+#sun-info {
+    border: 1px black solid;
+    border-radius: 50%;
+    width: 55vw;
+    height: 55vw;
+    margin: auto;
+}
+
+#sun-container {
+    background-color: pink;
+    overflow: hidden;
+    height: 35vw;
+    padding-top: 5vw;
+}
+
+#sun-picture {
+    background-color: yellow;
+    border-radius: 50%;
+    width: 7vw;
+    height: 7vw;
+    margin-left: 24vw;
+    margin-top: -4vw;
+}
