@@ -11,22 +11,33 @@
     <section id="city-selection-page" class="hidden">
         <input type="search" placeholder="Enter city name" id="city-name-input" autocomplete="off">
         <div id="localisation">
-            <div id="localisation-question">Would you like to see the weather forecast of your position?</div>
-            <button id='localisation-yes-cta'>Yes</button>
-            <button id='localisation-no-cta'>No</button>
+            <button id="localisation-cta">Would you like to see the weather forecast of your position?</button>
         </div>
         <ul id="cities-list"></ul>
     </section>   
     <section id="main-info-today" class="hidden">
         <button id="go-back-cta">Change city</button>
-        <div id="city-name"></div>
+        <h2 id="city-name"></h2>
         <div id="main-weather-info"> 
             <div id="sun-container">
-                <div id="sun-info">
+                <div id="sun-info"> 
                     <div id="sun-picture"></div>
                 </div>
             </div>
-        </div>   
+            <div id="direct-sunrise-sunset"> 
+                <span id="direct-sunrise"></span><span id="direct-sunset"></span>
+            </div>
+            <section id="direct-info"> 
+                <div id="moon-picture" class="hidden"></div>
+                <div id="direct-min-max"></div>
+                <span id="direct-current-temperature"></span> 
+                <img id="direct-main-weather-icon">
+                <div id="direct-description"></div>
+                <div id="direct-current-time"></div>
+                <div id="direct-current-date"></div>
+            </section>   
+        </div>  
+        <section id="today-weather-details">
             <div id="min-max-today"></div>
             <div id="current-temperature"></div>
             <div id="feels-like"></div>
@@ -39,6 +50,7 @@
             <div id="current-date"></div>
             <div id="sunrise-time"></div>
             <div id="sunset-time"></div>
+        </section>         
     </section>
     <section id="hourly-info-today"></section>
     <script src="./js/index.js" async defer></script>

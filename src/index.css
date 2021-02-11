@@ -4,30 +4,42 @@
 
 .city-list-item {
     cursor: pointer;
+    padding: 0.5vw;
 }
 
-#city-name-input, #go-back-cta, #city-name, #localisation-question, #localisation-yes-cta, #localisation-no-cta {
+body {
     max-width: 100%;
-    padding: 20px;
-    font-size: 25px;
-    display: inline-block;
+    color: darkblue;
+    font-size: 6vw;
 }
 
-#main-info-today>div {
-    padding: 15px;
-    font-size: 20px;
+#today-weather-details>div {
+    padding: 1vw;
+}
+
+#city-name {
+    font-size: 12vw;
+    margin: 2vw 0 5vw;
+}
+
+button, input {
+    padding: 2vw;
+    font-size: 6.5vw;
+    margin: 1vw;
+    color: darkblue;
+    border: 1px red solid;
 }
 
 #main-weather-info {
-    border: 2px black solid;
     border-radius: 50%;
-    width: 65vw;
-    height: 65vw;
+    width: 75vw;
+    height: 75vw;
     margin: auto;
+    background-color: skyblue;
 }
 
 #sun-info {
-    border: 1px black solid;
+    border: 3px yellow solid;
     border-radius: 50%;
     width: 55vw;
     height: 55vw;
@@ -35,17 +47,71 @@
 }
 
 #sun-container {
-    background-color: pink;
     overflow: hidden;
-    height: 27.5vw;
-    padding-top: 5vw;
+    height: 23vw;
+    padding-top: 7vw;
 }
 
 #sun-picture {
     background-color: yellow;
     border-radius: 50%;
-    width: 7vw;
-    height: 7vw;
+    width: 8vw;
+    height: 8vw;
     margin-left: 24vw;
     margin-top: -4vw;
+}
+
+#moon-picture {
+    width: 9vw;
+    height: 9vw;
+    border-radius: 50%;
+    box-shadow: 2vw 2vw 0 0 yellow;
+    margin-left: 15vw;
+    margin-bottom: -10vw;
+}
+
+#main-weather-info.night-time {
+    background-color:black;
+}
+
+#direct-info {
+    width:35vw;
+    height: 40vw;
+    margin: auto;
+    margin-top: -15vw;
+    padding-left: 8vw;
+}
+
+#direct-info>div {
+    padding: 1vw;
+}
+
+#direct-info.night-time {
+    color: white;
+}
+
+#direct-sunrise-sunset.night-time {
+    color: white;  
+}
+
+#direct-sunrise-sunset, #direct-info {
+    font-size: 5vw;
+}
+
+#direct-main-weather-icon {
+    margin-top: -17vw;
+}
+
+#direct-current-temperature, #direct-current-time {
+    font-size: 8vw;
+}
+
+#direct-sunset {
+    position:absolute;
+    right: 16.5vw; 
+}
+
+#direct-sunrise {
+    position:absolute;
+    left: 16.5vw; 
 }
