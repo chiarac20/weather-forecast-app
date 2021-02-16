@@ -1,10 +1,10 @@
 import {byId} from './domManager';
 import infoMapper from './infoMapper';
 import apiRequestManager from './apiRequest';
-import showTodayAllInfo from './showTodayAllInfo';
+import todayInfo from './todayInfo';
 import localStorageManager from './manageLocalStorage';
 
-function getLocalisationAllInfo() {
+function getLocalisationInfo() {
     navigator.geolocation.getCurrentPosition((position)=>{
         const {latitude, longitude}=position.coords;
         apiRequestManager.getLocalisationWeatherInfo(latitude, longitude)
@@ -15,7 +15,7 @@ function getLocalisationAllInfo() {
                 cityNameDom.innerText=data.city.name;
                 localStorageManager.storeObj('weatherInfo', mappedInfo);
                 localStorageManager.storeObj('mainCityInfo', mainCityInfo);
-                showTodayAllInfo.showTodayWeather(mappedInfo);
+                todayInfo.showWeather(mappedInfo);
             })
         apiRequestManager.getLocalisationMinMaxInfo(latitude, longitude)
             .then(data=>{
@@ -27,12 +27,12 @@ function getLocalisationAllInfo() {
                 const id=data.city.id;
                 const minMaxInfo={id, date, min, max};
                 localStorageManager.storeObj('minMaxInfo', minMaxInfo);
-                showTodayAllInfo.showMinMax(minMaxInfo);
+                todayInfo.showMinMax(minMaxInfo);
             })
     })  
 }
 
 
 export default {
-    getLocalisationAllInfo
+    getLocalisationInfo
 }

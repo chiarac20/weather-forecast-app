@@ -1,6 +1,6 @@
 import {byId} from './domManager';
 import cityNameSelector from './cityNameSelector';
-import showWeather from './showWeather';
+import weatherInfo from './weatherInfoManager';
 import localStorageManager from './manageLocalStorage';
 import localisationInfo from './localisationInfo';
 
@@ -15,7 +15,7 @@ if (localStorage.mainCityInfo) {
     mainInfoTodayDom.classList.remove('hidden');
     const mainInfo=localStorageManager.getStoredObj('mainCityInfo'); 
     const cityName=mainInfo.city;
-    showWeather.showWeather(cityName);  
+    weatherInfo.showWeather(cityName);  
 } else {
     citySelectionPageDom.classList.remove('hidden');
     localisationCtaDom.classList.remove('hidden');
@@ -25,15 +25,15 @@ if (localStorage.mainCityInfo) {
 localisationCtaDom.addEventListener('click', ()=>{
     citySelectionPageDom.classList.add('hidden');
     mainInfoTodayDom.classList.remove('hidden');
-    localisationInfo.getLocalisationAllInfo();
+    localisationInfo.getLocalisationInfo();
 })
 
-showWeather.init(changeCityFn)
+weatherInfo.init(changeCityFn)
 
 function onCitySelected(cityName) {
     citySelectionPageDom.classList.add('hidden'); 
     mainInfoTodayDom.classList.remove('hidden');
-    showWeather.showWeather(cityName);
+    weatherInfo.showWeather(cityName);
 }
 
 function changeCityFn(){

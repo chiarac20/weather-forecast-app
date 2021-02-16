@@ -3,7 +3,7 @@ import cityInfoManager from './cityInfo';
 import apiRequestManager from './apiRequest';
 import infoMapper from './infoMapper';
 import localStorageManager from './manageLocalStorage';
-import showTodayAllInfo from './showTodayAllInfo';
+import todayInfo from './todayInfo';
 
 const showTodayDetailsCtaDom=byId('show-today-details-cta');
 const hideTodayDetailsCtaDom=byId('hide-today-details-cta');
@@ -44,7 +44,7 @@ function showWeather(cityName){
         getMinMax(cityInfo.id)
     ]).then(info=> {
         const [weatherInfo, minMaxInfo]=info;
-        showTodayAllInfo.showTodayAllInfo(weatherInfo, minMaxInfo);
+        todayInfo.showInfo(weatherInfo, minMaxInfo);
     })
 }
 

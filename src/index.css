@@ -24,6 +24,10 @@ h1 {
     padding: 1vw;
 }
 
+#description {
+    text-transform: capitalize;
+}
+
 #city-name {
     font-size: 12vw;
     margin: 2vw 0 5vw;
@@ -36,6 +40,11 @@ button, input {
     margin: 5vw 0;
     color: darkblue;
     border: 1px grey solid;
+}
+
+.today-details-cta {
+    text-decoration: underline;
+    border:none
 }
 
 #main-weather-info {
@@ -74,8 +83,8 @@ button, input {
     height: 9vw;
     border-radius: 50%;
     box-shadow: 2vw 2vw 0 0 yellow;
-    margin-left: 18.5vw;
-    margin-bottom: -10vw;
+    margin-left: 22.5vw;
+    margin-bottom: -14vw;
 }
 
 #main-weather-info.night-time {
@@ -84,14 +93,14 @@ button, input {
 
 #direct-info {
     width:40vw;
-    height: 40vw;
+    height: 45vw;
     margin: auto;
-    margin-top: -10vw;
-    padding-left: 8vw;
+    margin-top: -12vw;
+    text-align: center;
 }
 
 #direct-info>div {
-    padding: 1vw;
+    padding: 1.3vw;
 }
 
 #direct-info.night-time {
@@ -107,7 +116,7 @@ button, input {
 }
 
 #direct-main-weather-icon {
-    margin-top: -17vw;
+    margin: -4vw -4vw -3vw 2vw;
 }
 
 #direct-current-temperature, #direct-current-time {
@@ -116,12 +125,12 @@ button, input {
 
 #direct-sunset {
     position:absolute;
-    right: 16.5vw; 
+    right: 14.5vw; 
 }
 
 #direct-sunrise {
     position:absolute;
-    left: 16.5vw; 
+    left: 14.5vw; 
 }
 
 .time-slot-time, .time-slot-temperature, .time-slot-icon {
@@ -134,7 +143,7 @@ button, input {
     font-size: 4.5vw;
 }
 
-#today-future-time-slots {
+#today-future-slots {
     display: flex;
     max-width: 100%;
     overflow-x: scroll;

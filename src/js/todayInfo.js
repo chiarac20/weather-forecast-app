@@ -1,6 +1,6 @@
 import sunRotationManager from './sunRotation'; 
 import {byId} from './domManager';
-import todayFutureTimeSlots from './showTodayFutureTimeSlots';
+import todayFutureSlots from './todayFutureSlots';
 
 const currentTimeDom=byId('current-time');
 const minMaxDom=byId('min-max-today');
@@ -28,12 +28,12 @@ const directSunriseSunsetDom=byId('direct-sunrise-sunset')
 const directDescriptionDom=byId('direct-description');
 const directInfoDom=byId('direct-info');
 
-function showTodayAllInfo(weatherInfo, minMaxInfo) {
-    showTodayWeather (weatherInfo);
+function showInfo(weatherInfo, minMaxInfo) {
+    showWeather (weatherInfo);
     showMinMax(minMaxInfo);
 }
 
-function showTodayWeather(weatherInfo) {
+function showWeather(weatherInfo) {
     const allDaysInfo=weatherInfo;
     const mainInfo=allDaysInfo.mainInfo;
     const todayInfo=mainInfo[0];
@@ -43,21 +43,21 @@ function showTodayWeather(weatherInfo) {
     directCurrentDateDom.innerText=todayInfo.date;
     directSunriseDom.innerText=allDaysInfo.sunrise;
     directSunsetDom.innerText=allDaysInfo.sunset;
-    currentDateDom.innerText='date: '+ todayInfo.date;
-    currentTempDom.innerText='current temp: '+ todayInfo.temperature;
-    feelsLikeDom.innerText='feels like: ' + todayInfo.feels_like;
-    humidityDom.innerText='humidity: ' + todayInfo.humidity;
-    descriptionDom.innerText='description: ' + todayInfo.description;
-    windSpeedDom.innerText='wind speed: ' + todayInfo.windMph + ' ' + todayInfo.windKmPerHour;
-    windDirectionDom.innerText='wind direction: ' + todayInfo.windDirection;
-    sunriseDom.innerText='sunrise: ' + allDaysInfo.sunrise; 
-    sunsetDom.innerText='sunset: ' + allDaysInfo.sunset;
+    currentDateDom.innerText='Date: '+ todayInfo.date;
+    currentTempDom.innerText='Current temp: '+ todayInfo.temperature;
+    feelsLikeDom.innerText='Feels like: ' + todayInfo.feels_like;
+    humidityDom.innerText='Humidity: ' + todayInfo.humidity;
+    descriptionDom.innerText=todayInfo.description;
+    windSpeedDom.innerText='Wind speed: ' + todayInfo.windMph + ' ' + todayInfo.windKmPerHour;
+    windDirectionDom.innerText='Wind direction: ' + todayInfo.windDirection;
+    sunriseDom.innerText='Sunrise: ' + allDaysInfo.sunrise; 
+    sunsetDom.innerText='Sunset: ' + allDaysInfo.sunset;
     iconDom.src=todayInfo.iconUrl;
     setUpTimeUpdate(); 
     rotateSun(allDaysInfo);
     showNightTime(allDaysInfo.sunsetMillisecs);
-    const mappedTodayTimeSlotsInfo=todayFutureTimeSlots.mapTodayFutureTimeSlots(mainInfo, todayInfo.date);
-    todayFutureTimeSlots.showTodayFutureTimeSlotsInfo(mappedTodayTimeSlotsInfo);
+    const mappedTodayTimeSlotsInfo=todayFutureSlots.mapInfo(mainInfo, todayInfo.date);
+    todayFutureSlots.showInfo(mappedTodayTimeSlotsInfo);
 }
 
 
@@ -95,7 +95,7 @@ function setUpTimeUpdate() {
 function showTime() { 
     const time=getTimeFromDate(new Date);
     const now=time.hours + ':' + time.minutes;
-    currentTimeDom.innerText='current time: ' + now;
+    currentTimeDom.innerText='Current time: ' + now;
     directCurrentTimeDom.innerText=now;
 }
 
@@ -111,12 +111,12 @@ function zeroFill(number) {
 
 function showMinMax(minMaxInfo) {
     const minMax=minMaxInfo.min + '°/' + minMaxInfo.max + '°';
-    minMaxDom.innerText='min/max: '+ minMax;
+    minMaxDom.innerText='Min/Max: '+ minMax;
     directMinMaxDom.innerText=minMax;
 }
 
 export default  {
-    showTodayAllInfo,
+    showInfo,
     showMinMax,
-    showTodayWeather
+    showWeather
 }
