@@ -2,16 +2,23 @@
     display: none;
 }
 
+body {
+    max-width: 100%;
+    color: darkblue;
+    font-size: 6vw;
+    margin:5vw;
+}
+
+h1 {
+    margin: 1vw;
+    font-size: 9vw;
+}
+
 .city-list-item {
     cursor: pointer;
     padding: 0.5vw;
 }
 
-body {
-    max-width: 100%;
-    color: darkblue;
-    font-size: 6vw;
-}
 
 #today-weather-details>div {
     padding: 1vw;
@@ -20,14 +27,15 @@ body {
 #city-name {
     font-size: 12vw;
     margin: 2vw 0 5vw;
+    text-align: center;
 }
 
 button, input {
     padding: 2vw;
-    font-size: 6.5vw;
-    margin: 1vw;
+    font-size: 5.5vw;
+    margin: 5vw 0;
     color: darkblue;
-    border: 1px red solid;
+    border: 1px grey solid;
 }
 
 #main-weather-info {
@@ -35,7 +43,7 @@ button, input {
     width: 75vw;
     height: 75vw;
     margin: auto;
-    background-color: skyblue;
+    background-color:lightsteelblue;
 }
 
 #sun-info {
@@ -66,7 +74,7 @@ button, input {
     height: 9vw;
     border-radius: 50%;
     box-shadow: 2vw 2vw 0 0 yellow;
-    margin-left: 15vw;
+    margin-left: 18.5vw;
     margin-bottom: -10vw;
 }
 
@@ -75,10 +83,10 @@ button, input {
 }
 
 #direct-info {
-    width:35vw;
+    width:40vw;
     height: 40vw;
     margin: auto;
-    margin-top: -15vw;
+    margin-top: -10vw;
     padding-left: 8vw;
 }
 
@@ -114,4 +122,23 @@ button, input {
 #direct-sunrise {
     position:absolute;
     left: 16.5vw; 
+}
+
+.time-slot-time, .time-slot-temperature, .time-slot-icon {
+    display: block;
+    padding: 0.5vw;
+    margin-right: 5vw;
+}
+
+.time-slot-temperature {
+    font-size: 4.5vw;
+}
+
+#today-future-time-slots {
+    display: flex;
+    max-width: 100%;
+    overflow-x: scroll;
+    list-style-type: none;
+    padding-inline-start: 0%;
+    font-size: 6vw;
 }

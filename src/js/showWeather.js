@@ -5,10 +5,33 @@ import infoMapper from './infoMapper';
 import localStorageManager from './manageLocalStorage';
 import showTodayAllInfo from './showTodayAllInfo';
 
+const showTodayDetailsCtaDom=byId('show-today-details-cta');
+const hideTodayDetailsCtaDom=byId('hide-today-details-cta');
+const todayWeatherDetailsDom=byId('today-weather-details');
+
 function init(onGoBackCta){
-    const ctaDom=byId('go-back-cta')
+    const ctaDom=byId('go-back-cta');
     ctaDom.addEventListener('click', onGoBackCta);
+    showTodayDetailsCtaDom.addEventListener('click', showTodayDetails);
+    hideTodayDetailsCtaDom.addEventListener('click', hideTodayDetails);
 }
+
+function showTodayDetails () {
+    hideTodayDetailsCtaDom.classList.remove('hidden');
+    showTodayDetailsCtaDom.classList.add('hidden');
+    todayWeatherDetailsDom.classList.remove('hidden');
+    window.scroll({
+        top: 1000,
+        behavior: 'smooth'
+      });
+}
+
+function hideTodayDetails () {
+    hideTodayDetailsCtaDom.classList.add('hidden');
+    showTodayDetailsCtaDom.classList.remove('hidden');
+    todayWeatherDetailsDom.classList.add('hidden');
+}
+
 
 function showWeather(cityName){
     const cityNameDom=byId('city-name');
@@ -28,9 +51,8 @@ function showWeather(cityName){
 function getWeatherInfo(cityInfo) {
     const mainInfoStored=localStorageManager.getStoredObj('mainCityInfo');
     const weatherInfoStored=localStorageManager.getStoredObj('weatherInfo');
-    const loggedDate= weatherInfoStored ?
-        weatherInfoStored.mainInfo[0].date + ' ' +  weatherInfoStored.mainInfo[0].time:
-        null;
+    const loggedDate= weatherInfoStored && 
+        (weatherInfoStored.mainInfo[0].date + ' ' +  weatherInfoStored.mainInfo[0].time);
     if (mainInfoStored && weatherInfoStored && weatherInfoStored.id === cityInfo.id && isInTheFuture(loggedDate)) {
         return Promise.resolve(weatherInfoStored);
     }
@@ -45,8 +67,8 @@ function getWeatherInfo(cityInfo) {
 function getMinMax(id) {
     const todayDate=new Date();
     const minMaxInfo=localStorageManager.getStoredObj('minMaxInfo');
-    const storedDate=new Date(minMaxInfo.date);
-    if (minMaxInfo.id===id && storedDate && storedDate.getDate()===todayDate.getDate() && storedDate.getMonth()===storedDate.getMonth()) {
+    const storedDate=minMaxInfo && new Date(minMaxInfo.date);
+    if (minMaxInfo && minMaxInfo.id===id && storedDate && storedDate.getDate()===todayDate.getDate() && storedDate.getMonth()===storedDate.getMonth()) {
         return Promise.resolve(minMaxInfo);
     }
     return apiRequestManager.getMinMax(id)

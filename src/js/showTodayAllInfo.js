@@ -1,5 +1,6 @@
 import sunRotationManager from './sunRotation'; 
 import {byId} from './domManager';
+import todayFutureTimeSlots from './showTodayFutureTimeSlots';
 
 const currentTimeDom=byId('current-time');
 const minMaxDom=byId('min-max-today');
@@ -34,7 +35,8 @@ function showTodayAllInfo(weatherInfo, minMaxInfo) {
 
 function showTodayWeather(weatherInfo) {
     const allDaysInfo=weatherInfo;
-    const todayInfo=allDaysInfo.mainInfo[0];
+    const mainInfo=allDaysInfo.mainInfo;
+    const todayInfo=mainInfo[0];
     directCurrentTempDom.innerText=todayInfo.temperature;
     directMainWeatherIconDom.src=todayInfo.iconUrl;
     directDescriptionDom.innerText=todayInfo.description;
@@ -54,7 +56,11 @@ function showTodayWeather(weatherInfo) {
     setUpTimeUpdate(); 
     rotateSun(allDaysInfo);
     showNightTime(allDaysInfo.sunsetMillisecs);
+    const mappedTodayTimeSlotsInfo=todayFutureTimeSlots.mapTodayFutureTimeSlots(mainInfo, todayInfo.date);
+    todayFutureTimeSlots.showTodayFutureTimeSlotsInfo(mappedTodayTimeSlotsInfo);
 }
+
+
 
 function showNightTime(sunsetMillisecs) {
     const date=new Date();
