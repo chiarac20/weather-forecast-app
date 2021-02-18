@@ -74,5 +74,6 @@ function getWindDirection(degree) {
 }
 
 export default {
-    mapInfo
+    mapInfo,
+    sunriseSunset
 }

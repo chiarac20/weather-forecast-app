@@ -14,6 +14,20 @@ h1 {
     font-size: 9vw;
 }
 
+#spinner-section {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, .7);
+    color:white;
+}
+
+#spinner {
+    margin: 62vw 37vw;
+}
+
 .city-list-item {
     cursor: pointer;
     padding: 0.5vw;
@@ -21,6 +35,7 @@ h1 {
 
 
 #today-weather-details>div {
+    font-size: 5vw;
     padding: 1vw;
 }
 
@@ -47,7 +62,7 @@ button, input {
     border:none
 }
 
-#main-weather-info {
+#direct-weather-info {
     border-radius: 50%;
     width: 75vw;
     height: 75vw;
@@ -92,7 +107,7 @@ button, input {
 }
 
 #direct-info {
-    width:40vw;
+    width: 40vw;
     height: 45vw;
     margin: auto;
     margin-top: -12vw;

@@ -1,9 +1,11 @@
 import {byId} from './domManager';
 import cityInfoManager from './cityInfo';
 import apiRequestManager from './apiRequest';
-import infoMapper from './infoMapper';
+import infoMapper from './weatherInfoMapper';
 import localStorageManager from './manageLocalStorage';
 import todayInfo from './todayInfo';
+import nextDays from './nextDaysInfo';
+import dailyInfo from './dailyInfoMapper';
 
 const showTodayDetailsCtaDom=byId('show-today-details-cta');
 const hideTodayDetailsCtaDom=byId('hide-today-details-cta');
@@ -39,13 +41,14 @@ function showWeather(cityName){
     cityNameDom.innerText=cityInfo.name;
     const mainCityInfo={id: cityInfo.id, city: cityInfo.name};
     localStorageManager.storeObj('mainCityInfo', mainCityInfo);
-    Promise.all([
+    return Promise.all([
         getWeatherInfo(cityInfo),
         getMinMax(cityInfo.id)
     ]).then(info=> {
         const [weatherInfo, minMaxInfo]=info;
         todayInfo.showInfo(weatherInfo, minMaxInfo);
-    })
+        nextDays.showDays([0, 1, 2, 3, 4]);
+    });
 }
 
 function getWeatherInfo(cityInfo) {
@@ -79,12 +82,11 @@ function getMinMax(id) {
             const sec=info.list[0].dt;
             const date=new Date(sec*1000).toDateString();
             const minMaxInfo={id, date, min, max};
+            dailyInfo.mapInfo(info)
             localStorageManager.storeObj('minMaxInfo', minMaxInfo);
             return minMaxInfo;
         })
 }
-
-
 
 function isInTheFuture(date) {
     if (!date) return false;

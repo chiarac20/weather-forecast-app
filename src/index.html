@@ -14,47 +14,78 @@
             <button id="localisation-cta">Would you like to see the weather forecast of your position?</button>
         </div>
         <ul id="cities-list"></ul>
-    </section>   
-    <section id="main-info-today" class="hidden">
-        <button id="go-back-cta">Change city</button>
-        <h2 id="city-name"></h2>
-        <div id="main-weather-info"> 
-            <div id="sun-container">
-                <div id="sun-info"> 
-                    <div id="sun-picture"></div>
-                </div>
-            </div>
-            <div id="direct-sunrise-sunset"> 
-                <span id="direct-sunrise"></span><span id="direct-sunset"></span>
-            </div>
-            <section id="direct-info"> 
-                <div id="moon-picture" class="hidden"></div>
-                <div id="direct-min-max"></div>
-                <span id="direct-current-temperature"></span> 
-                <img id="direct-main-weather-icon">
-                <div id="direct-description"></div>
-                <div id="direct-current-time"></div>
-                <div id="direct-current-date"></div>
-            </section>   
-        </div>  
-        <ul id="today-future-slots"></ul>
-        <button id="show-today-details-cta" class="today-details-cta">More details</button>
-        <button id="hide-today-details-cta" class="hidden today-details-cta">Hide details</button>
-        <section id="today-weather-details" class="hidden">
-            <div id="current-time"></div>
-            <div id="current-date"></div>
-            <div id="sunrise-time"></div>
-            <div id="sunset-time"></div>
-            <div id="min-max-today"></div>
-            <div id="current-temperature"></div>
-            <div id="feels-like"></div>
-            <div id="description"></div>
-            <img id="main-weather-icon">
-            <div id="humidity"></div>
-            <div id="wind-speed"></div>
-            <div id="wind-direction"></div>
-        </section>         
+    </section>  
+    <section id="spinner-section" class="hidden">
+        <div id="spinner">Loading...</div>
     </section>
+    <main id="info-all" class="hidden">
+        <section>
+            <button id="go-back-cta">Change city</button>
+            <h2 id="city-name"></h2>
+            <div id="direct-weather-info"> 
+                <div id="sun-container">
+                    <div id="sun-info"> 
+                        <div id="sun-picture"></div>
+                    </div>
+                </div>
+                <div id="direct-sunrise-sunset"> 
+                    <span id="direct-sunrise"></span><span id="direct-sunset"></span>
+                </div>
+                <section id="direct-info"> 
+                    <div id="moon-picture" class="hidden"></div>
+                    <div id="direct-min-max"></div>
+                    <span id="direct-current-temperature"></span> 
+                    <img id="direct-main-weather-icon">
+                    <div id="direct-description"></div>
+                    <div id="direct-current-time"></div>
+                    <div id="direct-current-date"></div>
+                </section>   
+            </div>  
+            <ul id="today-future-slots"></ul>
+            <button id="show-today-details-cta" class="today-details-cta">More details</button>
+            <button id="hide-today-details-cta" class="hidden today-details-cta">Hide details</button>
+            <section id="today-weather-details" class="hidden">
+                <div id="current-time"></div>
+                <div id="current-date"></div>
+                <div id="sunrise-time"></div>
+                <div id="sunset-time"></div>
+                <div id="min-max-today"></div>
+                <div id="current-temperature"></div>
+                <div id="feels-like"></div>
+                <div id="description"></div>
+                <img id="main-weather-icon">
+                <div id="humidity"></div>
+                <div id="wind-speed"></div>
+                <div id="wind-direction"></div>
+            </section>         
+        </section>
+        <section> 
+            <div> Touch a day to see forecast </div>
+            <button class="next-days-cta" data-day-index="1"></button>
+            <button class="next-days-cta" data-day-index="2"></button>
+            <button class="next-days-cta" data-day-index="3"></button>
+            <button class="next-days-cta" data-day-index="4"></button>
+            <button class="next-days-cta" data-day-index="5"></button>
+            <button class="next-days-cta" data-day-index="6"></button>
+            <div id="next-days-info">
+                <div id="date" class="next-days-info"></div>
+                <div id="min-max" class="next-days-info"></div>
+                <div id="sunrise" class="next-days-info"></div>
+                <div id="sunset" class="next-days-info"></div>
+                <div id="humidity" class="next-days-info"></div>
+                <div id="temperature-morning" class="next-days-info"></div>
+                <div id="temperature-day" class="next-days-info"></div>
+                <div id="temperature-evening" class="next-days-info"></div>
+                <div id="temperature-night" class="next-days-info"></div>
+                <div id="feels-like-morning" class="next-days-info"></div>
+                <div id="feels-like-day" class="next-days-info"></div>
+                <div id="feels-like-evening" class="next-days-info"></div>
+                <div id="feels-like-night" class="next-days-info"></div>
+                <div id="description" class="next-days-info"></div>
+                <img id="weather-icon" class="next-days-info">
+            </div>  
+        </section>
+    </main> 
     <script src="./js/index.js" async defer></script>
 </body>
 </html>

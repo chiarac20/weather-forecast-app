@@ -16,7 +16,7 @@ const humidityDom=byId('humidity');
 const iconDom=byId('main-weather-icon');
 const windDirectionDom=byId('wind-direction');
 const moonPictureDom=byId('moon-picture');
-const mainWeatherInfoDom=byId('main-weather-info');
+const directWeatherInfoDom=byId('direct-weather-info');
 const directMinMaxDom=byId('direct-min-max');
 const directCurrentTempDom=byId('direct-current-temperature');
 const directMainWeatherIconDom=byId('direct-main-weather-icon');
@@ -66,13 +66,13 @@ function showNightTime(sunsetMillisecs) {
     const date=new Date();
     const now=date.getTime();
     if (sunsetMillisecs<now) {
-        mainWeatherInfoDom.classList.add('night-time');
+        directWeatherInfoDom.classList.add('night-time');
         directInfoDom.classList.add('night-time');
         directSunriseSunsetDom.classList.add('night-time');
         moonPictureDom.classList.remove('hidden');
         directMainWeatherIconDom.classList.add('hidden');
     } else {
-        mainWeatherInfoDom.classList.remove('night-time');
+        directWeatherInfoDom.classList.remove('night-time');
         directInfoDom.classList.remove('night-time');
         directSunriseSunsetDom.classList.remove('night-time');
         moonPictureDom.classList.add('hidden');
