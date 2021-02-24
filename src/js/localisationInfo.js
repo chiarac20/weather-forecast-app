@@ -3,8 +3,10 @@ import infoMapper from './weatherInfoMapper';
 import apiRequestManager from './apiRequest';
 import todayInfo from './todayInfo';
 import localStorageManager from './manageLocalStorage';
+import dailyInfo from './dailyInfoMapper';
+import nextDays from './nextDaysInfo';
 
-function showLocalisationInfo() {
+function showInfo() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position)=>{
             const {latitude, longitude}=position.coords;
@@ -18,7 +20,7 @@ function showLocalisationInfo() {
                     localStorageManager.storeObj('mainCityInfo', mainCityInfo);
                     todayInfo.showWeather(mappedInfo);
                 })
-            const getTemperatureInfo = apiRequestManager.getLocalisationMinMaxInfo(latitude, longitude)
+            const getDailyInfo = apiRequestManager.getLocalisationDailyInfo(latitude, longitude)
                 .then(data=>{
                     const minMax=data.list[0].temp;
                     const min=Math.round(minMax.min);
@@ -27,15 +29,18 @@ function showLocalisationInfo() {
                     const date=new Date(sec*1000).toDateString();
                     const id=data.city.id;
                     const minMaxInfo={id, date, min, max};
+                    const nextDaysInfo=dailyInfo.mapInfo(data)
                     localStorageManager.storeObj('minMaxInfo', minMaxInfo);
                     todayInfo.showMinMax(minMaxInfo);
+                    localStorageManager.storeObj('nextDaysInfo', nextDaysInfo);
+                    nextDays.showNextDays(nextDaysInfo);
                 })
-            Promise.all([getWeatherInfo, getTemperatureInfo]).then(resolve, reject);
+            Promise.all([getWeatherInfo, getDailyInfo]).then(resolve, reject);
         }, reject);  
     })
 }
 
 
 export default {
-    showLocalisationInfo
+    showInfo
 }

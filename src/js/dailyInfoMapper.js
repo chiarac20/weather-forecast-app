@@ -1,15 +1,16 @@
 import weatherInfoMapper from './weatherInfoMapper';
 
 function mapInfo(info) {
+    const id=info.city.id;
     const nextDaysInfo=info.list.slice(1);
     return nextDaysInfo.map(day=>{
-        console.log(day)
         const sunrise=weatherInfoMapper.sunriseSunset(day.sunrise*1000);
         const sunriseTime=`${sunrise.hours}:${sunrise.minutes}`;
         const sunset=weatherInfoMapper.sunriseSunset(day.sunset*1000);
-        const sunsetTime=`${sunset.hours}:${sunset.minutes}`
-        const info= {
-            date: new Date(day.dt*1000),
+        const sunsetTime=`${sunset.hours}:${sunset.minutes}`;
+        return {
+            id,
+            date: new Date(day.dt*1000).toDateString(),
             min:day.temp.min,
             max:day.temp.max,
             sunrise: sunriseTime,
@@ -24,10 +25,8 @@ function mapInfo(info) {
             feelsLikeEve: day.feels_like.eve,
             feelsLikeNight: day.feels_like.night,
             description: day.weather[0].description,
-            icon: day.weather[0].icon
+            iconUrl: `http://openweathermap.org/img/w/${day.weather[0].icon}.png`
         }
-        console.log(info)
-        return info
     })
 }
 

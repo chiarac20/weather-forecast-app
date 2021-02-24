@@ -1,6 +1,7 @@
 import sunRotationManager from './sunRotation'; 
 import {byId} from './domManager';
 import todayFutureSlots from './todayFutureSlots';
+import nextDays from './nextDaysInfo';
 
 const currentTimeDom=byId('current-time');
 const minMaxDom=byId('min-max-today');
@@ -28,9 +29,10 @@ const directSunriseSunsetDom=byId('direct-sunrise-sunset')
 const directDescriptionDom=byId('direct-description');
 const directInfoDom=byId('direct-info');
 
-function showInfo(weatherInfo, minMaxInfo) {
+function showInfo(weatherInfo, minMaxInfo, nextDaysInfo) {
     showWeather (weatherInfo);
     showMinMax(minMaxInfo);
+    nextDays.showNextDays(nextDaysInfo);
 }
 
 function showWeather(weatherInfo) {
@@ -59,7 +61,6 @@ function showWeather(weatherInfo) {
     const mappedTodayTimeSlotsInfo=todayFutureSlots.mapInfo(mainInfo, todayInfo.date);
     todayFutureSlots.showInfo(mappedTodayTimeSlotsInfo);
 }
-
 
 
 function showNightTime(sunsetMillisecs) {

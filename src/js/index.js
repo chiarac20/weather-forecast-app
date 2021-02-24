@@ -22,10 +22,9 @@ if (localStorage.mainCityInfo) {
     citySelectionPageDom.classList.remove('hidden');
     localisationCtaDom.classList.remove('hidden');
 }
-
 localisationCtaDom.addEventListener('click', ()=>{
     spinnerSectionDom.classList.remove('hidden');
-    localisationInfo.showLocalisationInfo().then(()=>{
+    localisationInfo.showInfo().then(()=>{
         spinnerSectionDom.classList.add('hidden');
         citySelectionPageDom.classList.add('hidden');
         infoAll.classList.remove('hidden');

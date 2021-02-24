@@ -43,11 +43,11 @@ function showWeather(cityName){
     localStorageManager.storeObj('mainCityInfo', mainCityInfo);
     return Promise.all([
         getWeatherInfo(cityInfo),
-        getMinMax(cityInfo.id)
+        getDailyInfo(cityInfo.id)
     ]).then(info=> {
-        const [weatherInfo, minMaxInfo]=info;
-        todayInfo.showInfo(weatherInfo, minMaxInfo);
-        nextDays.showDays([0, 1, 2, 3, 4]);
+        const [weatherInfo, dailyInfo]=info;
+        const {minMaxInfo, nextDaysInfo}=dailyInfo;
+        todayInfo.showInfo(weatherInfo, minMaxInfo, nextDaysInfo);
     });
 }
 
@@ -67,14 +67,15 @@ function getWeatherInfo(cityInfo) {
         });
 }
 
-function getMinMax(id) {
+function getDailyInfo(id) {
     const todayDate=new Date();
     const minMaxInfo=localStorageManager.getStoredObj('minMaxInfo');
+    const nextDaysInfo=localStorageManager.getStoredObj('nextDaysInfo');
     const storedDate=minMaxInfo && new Date(minMaxInfo.date);
     if (minMaxInfo && minMaxInfo.id===id && storedDate && storedDate.getDate()===todayDate.getDate() && storedDate.getMonth()===storedDate.getMonth()) {
-        return Promise.resolve(minMaxInfo);
+        return Promise.resolve({minMaxInfo, nextDaysInfo});
     }
-    return apiRequestManager.getMinMax(id)
+    return apiRequestManager.getDailyInfo(id)
         .then(info=>{
             const minMax=info.list[0].temp;
             const min=Math.round(minMax.min);
@@ -82,9 +83,10 @@ function getMinMax(id) {
             const sec=info.list[0].dt;
             const date=new Date(sec*1000).toDateString();
             const minMaxInfo={id, date, min, max};
-            dailyInfo.mapInfo(info)
+            const nextDaysInfo=dailyInfo.mapInfo(info);
             localStorageManager.storeObj('minMaxInfo', minMaxInfo);
-            return minMaxInfo;
+            localStorageManager.storeObj('nextDaysInfo', nextDaysInfo);
+            return {minMaxInfo, nextDaysInfo};
         })
 }
 

@@ -39,7 +39,7 @@ h1 {
     padding: 1vw;
 }
 
-#description {
+#description, #next-days-description {
     text-transform: capitalize;
 }
 
@@ -51,10 +51,11 @@ h1 {
 
 button, input {
     padding: 2vw;
-    font-size: 5.5vw;
+    font-size: 5vw;
     margin: 5vw 0;
     color: darkblue;
     border: 1px grey solid;
+    display: inline-block;
 }
 
 .today-details-cta {
@@ -98,11 +99,11 @@ button, input {
     height: 9vw;
     border-radius: 50%;
     box-shadow: 2vw 2vw 0 0 yellow;
-    margin-left: 22.5vw;
+    margin-left: 25.5vw;
     margin-bottom: -14vw;
 }
 
-#main-weather-info.night-time {
+#direct-weather-info.night-time {
     background-color:black;
 }
 
@@ -118,7 +119,7 @@ button, input {
     padding: 1.3vw;
 }
 
-#direct-info.night-time {
+#direct-weather-info.night-time {
     color: white;
 }
 
@@ -131,7 +132,7 @@ button, input {
 }
 
 #direct-main-weather-icon {
-    margin: -4vw -4vw -3vw 2vw;
+    margin: -8vw -4vw -4vw 2vw;
 }
 
 #direct-current-temperature, #direct-current-time {
