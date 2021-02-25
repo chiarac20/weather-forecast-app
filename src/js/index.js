@@ -9,7 +9,7 @@ const cityInputDom=byId('city-name-input');
 const citySelectionPageDom=byId('city-selection-page');
 const localisationCtaDom=byId('localisation-cta');
 const todayFutureSlotsDom=byId("today-future-slots");
-const spinnerSectionDom=byId('spinner-section');
+const loaderSectionDom=byId('loader-section');
 
 cityNameSelector.init(onCitySelected);
 
@@ -23,9 +23,9 @@ if (localStorage.mainCityInfo) {
     localisationCtaDom.classList.remove('hidden');
 }
 localisationCtaDom.addEventListener('click', ()=>{
-    spinnerSectionDom.classList.remove('hidden');
+    loaderSectionDom.classList.remove('hidden');
     localisationInfo.showInfo().then(()=>{
-        spinnerSectionDom.classList.add('hidden');
+        loaderSectionDom.classList.add('hidden');
         citySelectionPageDom.classList.add('hidden');
         infoAll.classList.remove('hidden');
     });  
@@ -34,9 +34,9 @@ localisationCtaDom.addEventListener('click', ()=>{
 weatherInfo.init(changeCityFn)
 
 function onCitySelected(cityName) {
-    spinnerSectionDom.classList.remove('hidden');
+    loaderSectionDom.classList.remove('hidden');
     weatherInfo.showWeather(cityName).then(()=>{
-        spinnerSectionDom.classList.add('hidden');
+        loaderSectionDom.classList.add('hidden');
         citySelectionPageDom.classList.add('hidden'); 
         infoAll.classList.remove('hidden');
     });

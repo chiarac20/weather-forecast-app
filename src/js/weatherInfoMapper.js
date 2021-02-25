@@ -1,3 +1,5 @@
+import config from './configuration';
+
 function mapInfo(mainForecast) {
     const {sunrise: sunriseSecs, sunset: sunsetSecs} = mainForecast.city;
     const sunriseMillisecs=sunriseSecs*1000;
@@ -21,7 +23,7 @@ function mapInfo(mainForecast) {
             humidity: timeLapse.main.humidity + '%',
             temperature: timeLapse.main.temp.toFixed(1) + '°',
             description: timeLapse.weather[0].description,
-            iconUrl: 'http://openweathermap.org/img/w/' + timeLapse.weather[0].icon + '.png',
+            iconUrl: `${config.iconUrlStart}${timeLapse.weather[0].icon}${config.iconUrlEnd}`,
             windMph: (windSpeed * 2.237).toFixed(1) + 'Mph/',
             windKmPerHour: (windSpeed * 3.6).toFixed(1) + 'KmPerHour',
             windDirection

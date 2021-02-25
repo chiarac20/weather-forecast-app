@@ -1,6 +1,7 @@
 import {byClass} from './domManager';
 import {byId} from './domManager';
 
+const nextDaysInfoDom=byId('next-days-info');
 const nextDaysCtaDom=byClass('next-days-cta');
 const nextDaysDateDom=byId('next-days-date');
 const nextDaysMinMaxDom=byId('next-days-min-max');
@@ -17,12 +18,24 @@ const nextDaysFeelsLikeEveDom=byId('next-days-feels-like-evening');
 const nextDaysFeelsLikeNightDom=byId('next-days-feels-like-night');
 const nextDaysDescriptionDom=byId('next-days-description');
 const nextDaysIconDom=byId('next-days-weather-icon');
+const hideNextDaysDetailsCtaDom=byId('hide-next-days-details-cta');
 let daysWeatherInfo;
 
 nextDaysCtaDom.forEach((cta, index)=>{
     cta.addEventListener('click', ()=>{
+        hideNextDaysDetailsCtaDom.classList.remove('hidden');
         showDailyInfo(daysWeatherInfo[index]);
+        nextDaysInfoDom.classList.remove('hidden');
+        window.scroll({
+            top: 1000,
+            behavior: 'smooth'
+        });
     })
+})
+
+hideNextDaysDetailsCtaDom.addEventListener('click', ()=>{
+    nextDaysInfoDom.classList.add('hidden');
+    hideNextDaysDetailsCtaDom.classList.add('hidden');
 })
 
 function showNextDays(info) {
@@ -35,22 +48,21 @@ function showNextDays(info) {
 }
 
 function showDailyInfo(singleDayInfo) {
-console.log(singleDayInfo)
-nextDaysDateDom.innerText=singleDayInfo.date;
-nextDaysMinMaxDom.innerText=`Min/Max: ${singleDayInfo.min}°/${singleDayInfo.max}°`;
-nextDaysSunriseDom.innerText=`Sunrise: ${singleDayInfo.sunrise}`;
-nextDaysSunsetDom.innerText=`Sunset: ${singleDayInfo.sunset}`;
-nextDaysHumidityDom.innerText=`Humidity: ${singleDayInfo.humidity}%`;
-nextDaysMorningTempDom.innerText=`Morning temp: ${singleDayInfo.tempMorn}°`;
-nextDaysDayTempDom.innerText=`Day temp: ${singleDayInfo.tempDay}`;
-nextDaysEveTempDom.innerText=`Evening temp: ${singleDayInfo.tempEve}`;
-nextDaysNightTempDom.innerText=`Night temp: ${singleDayInfo.tempNight}`;
-nextDaysFeelsLikeMorningDom.innerText=`Feels like (morning): ${singleDayInfo.feelsLikeMorn}`;
-nextDaysFeelsLikeDayDom.innerText=`Feels like (day): ${singleDayInfo.feelsLikeDay}`;
-nextDaysFeelsLikeEveDom.innerText=`Feels like (evening): ${singleDayInfo.feelsLikeEve}`;
-nextDaysFeelsLikeNightDom.innerText=`Feels like (night): ${singleDayInfo.feelsLikeNight}`;
-nextDaysDescriptionDom.innerText=singleDayInfo.description;
-nextDaysIconDom.src=singleDayInfo.iconUrl;
+    nextDaysDateDom.innerText=singleDayInfo.date;
+    nextDaysMinMaxDom.innerText=`Min/Max: ${singleDayInfo.min}°/${singleDayInfo.max}°`;
+    nextDaysSunriseDom.innerText=`Sunrise: ${singleDayInfo.sunrise}`;
+    nextDaysSunsetDom.innerText=`Sunset: ${singleDayInfo.sunset}`;
+    nextDaysHumidityDom.innerText=`Humidity: ${singleDayInfo.humidity}%`;
+    nextDaysMorningTempDom.innerText=`Morning: ${singleDayInfo.tempMorn}°`;
+    nextDaysDayTempDom.innerText=`Day: ${singleDayInfo.tempDay}`;
+    nextDaysEveTempDom.innerText=`Evening: ${singleDayInfo.tempEve}`;
+    nextDaysNightTempDom.innerText=`Night: ${singleDayInfo.tempNight}`;
+    nextDaysFeelsLikeMorningDom.innerText=`Morning: ${singleDayInfo.feelsLikeMorn}`;
+    nextDaysFeelsLikeDayDom.innerText=`Day: ${singleDayInfo.feelsLikeDay}`;
+    nextDaysFeelsLikeEveDom.innerText=`Evening: ${singleDayInfo.feelsLikeEve}`;
+    nextDaysFeelsLikeNightDom.innerText=`Night: ${singleDayInfo.feelsLikeNight}`;
+    nextDaysDescriptionDom.innerText=singleDayInfo.description;
+    nextDaysIconDom.src=singleDayInfo.iconUrl;
 }
 
 function getDays() {

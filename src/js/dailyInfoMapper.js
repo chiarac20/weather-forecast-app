@@ -1,4 +1,5 @@
 import weatherInfoMapper from './weatherInfoMapper';
+import config from './configuration';
 
 function mapInfo(info) {
     const id=info.city.id;
@@ -25,7 +26,7 @@ function mapInfo(info) {
             feelsLikeEve: day.feels_like.eve,
             feelsLikeNight: day.feels_like.night,
             description: day.weather[0].description,
-            iconUrl: `http://openweathermap.org/img/w/${day.weather[0].icon}.png`
+            iconUrl: `${config.iconUrlStart}${day.weather[0].icon}${config.iconUrlEnd}`
         }
     })
 }

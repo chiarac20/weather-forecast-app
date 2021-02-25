@@ -4,7 +4,6 @@ import apiRequestManager from './apiRequest';
 import infoMapper from './weatherInfoMapper';
 import localStorageManager from './manageLocalStorage';
 import todayInfo from './todayInfo';
-import nextDays from './nextDaysInfo';
 import dailyInfo from './dailyInfoMapper';
 
 const showTodayDetailsCtaDom=byId('show-today-details-cta');

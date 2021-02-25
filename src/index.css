@@ -5,8 +5,9 @@
 body {
     max-width: 100%;
     color: darkblue;
-    font-size: 6vw;
+    font: 6vw TimesNewRoman;
     margin:5vw;
+    background-image: url("./cloudySkyImage.jpg");
 }
 
 h1 {
@@ -14,18 +15,33 @@ h1 {
     font-size: 9vw;
 }
 
-#spinner-section {
+h3 {
+    margin: 2vw;
+}
+
+#loader-section {
     position: fixed;
     top:0;
     left:0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(50, 50, 50, .7);
-    color:white;
+    color: rgb(255, 255, 255);
 }
 
-#spinner {
-    margin: 62vw 37vw;
+#loader {
+    border: 16px lightgray solid; 
+    border-top: 16px blue solid; 
+    margin: 30vw 36vw;
+    border-radius: 50%;
+    width: 20vw;
+    height: 20vw;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .city-list-item {
@@ -34,7 +50,7 @@ h1 {
 }
 
 
-#today-weather-details>div {
+#today-weather-details>div{
     font-size: 5vw;
     padding: 1vw;
 }
@@ -50,15 +66,15 @@ h1 {
 }
 
 button, input {
+    font: 5vw TimesNewRoman;
     padding: 2vw;
-    font-size: 5vw;
-    margin: 5vw 0;
+    margin: 3vw 0;
     color: darkblue;
     border: 1px grey solid;
     display: inline-block;
 }
 
-.today-details-cta {
+.today-details-cta, #hide-next-days-details-cta {
     text-decoration: underline;
     border:none
 }
@@ -68,7 +84,7 @@ button, input {
     width: 75vw;
     height: 75vw;
     margin: auto;
-    background-color:lightsteelblue;
+    background-color: rgb(176, 196, 222);
 }
 
 #sun-info {
@@ -86,7 +102,7 @@ button, input {
 }
 
 #sun-picture {
-    background-color: yellow;
+    background-color: rgb(255, 255, 0);
     border-radius: 50%;
     width: 8vw;
     height: 8vw;
@@ -98,13 +114,13 @@ button, input {
     width: 9vw;
     height: 9vw;
     border-radius: 50%;
-    box-shadow: 2vw 2vw 0 0 yellow;
+    box-shadow: 2vw 2vw 0 0 rgb(255, 255, 0);
     margin-left: 25.5vw;
     margin-bottom: -14vw;
 }
 
 #direct-weather-info.night-time {
-    background-color:black;
+    background-color:rgb(100, 100, 100);
 }
 
 #direct-info {
@@ -120,11 +136,11 @@ button, input {
 }
 
 #direct-weather-info.night-time {
-    color: white;
+    color: rgb(245, 245, 245)
 }
 
 #direct-sunrise-sunset.night-time {
-    color: white;  
+    color: rgba(245, 245, 245, .5);  
 }
 
 #direct-sunrise-sunset, #direct-info {
@@ -132,6 +148,8 @@ button, input {
 }
 
 #direct-main-weather-icon {
+    height: 17vw;
+    width: 18vw;
     margin: -8vw -4vw -4vw 2vw;
 }
 
@@ -149,10 +167,17 @@ button, input {
     left: 14.5vw; 
 }
 
-.time-slot-time, .time-slot-temperature, .time-slot-icon {
+.time-slot-time, .time-slot-temperature {
     display: block;
     padding: 0.5vw;
     margin-right: 5vw;
+}
+
+.time-slot-icon {
+    display: block;
+    margin: -1vw 5vw -1vw -1vw;
+    height: 17vw;
+    width: 18vw;
 }
 
 .time-slot-temperature {
@@ -166,4 +191,23 @@ button, input {
     list-style-type: none;
     padding-inline-start: 0%;
     font-size: 6vw;
+}
+
+#today-icon-container, #next-days-icon-container {
+    margin-top: -9vw;
+}
+
+.next-days-info {
+    font-size: 5vw;
+    padding: 1vw;
+}
+
+#main-weather-icon, #next-days-weather-icon {
+    height: 16vw;
+    width: 18vw;
+    margin: 2vw 0 -5vw 3vw;
+}
+
+#today-weather-details, #next-days-info {
+    background-color:rgb (211, 211, 211);
 }
