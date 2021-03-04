@@ -104,7 +104,15 @@
             margin-left: 17vw;
             margin-top: -2vw;
         }
-        
+
+        #moon-picture {
+            width: 10px;
+            height: 10px;
+            box-shadow: 5px 5px 0 0 $yellow;
+            margin-bottom: -12vw;
+            transform: translate(-10px, -10px);
+        }
+
         #sun-info {
             width: $circle-ray*.8;
             height: $circle-ray*.8;
@@ -113,6 +121,7 @@
         #direct-info {
             font-size: 2.5vw;
             margin-left: 2vw;
+            margin-top: -6vw;
         }
 
         #direct-sunrise-sunset {
@@ -148,10 +157,14 @@
             height: 12vw;
             padding-top: 4vw;
         }
-        
+
         #sun-info {
             width: $circle-ray*.8;
             height: $circle-ray*.8;
+        }
+
+        #moon-picture {
+            margin-bottom: -8vw;
         }
 
         #direct-sunrise-sunset {
