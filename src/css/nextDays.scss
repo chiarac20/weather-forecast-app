@@ -1,0 +1,96 @@
+#next-days-section {
+    background-color: $white-transparent;
+    padding: 4vw;
+    margin-bottom: 5vw;
+
+    .next-days-cta {
+        padding: 2vw;
+        background-color: rgb(0, 0, 230);
+        color: $white-transparent;
+    }
+    
+    #next-days-ctas {
+        text-align: center;
+    }
+    
+    #hide-next-days-details-cta{
+        border:none;
+        margin: 2vw 3vw;
+    }
+
+    #next-days-info {
+        div {
+            font-size: 5vw;
+            margin: 2vw 0 2vw 2vw;
+            padding: 1vw;
+        }
+        
+        first-child {
+            padding-top: 4vw;
+        }
+            
+        #next-days-icon-container {
+            margin-top: -9vw;
+        }  
+
+        #next-days-temperature {
+            margin-bottom: 2vw;
+
+            div {
+                margin: 0 2vw;
+            }
+        }
+
+        #next-days-feels-like>div {
+            margin: 0 2vw;
+        }   
+    }
+
+    #next-days-weather-icon {
+        height: 16vw;
+        width: 18vw;
+        margin: 2vw 0 -5vw 3vw;
+    }
+    
+    #next-days-description {
+        text-transform: capitalize;
+    }
+
+    @media (min-width: $min-tablet-width) {
+        padding: 2vw;
+
+        .next-days-cta {
+            margin: 1vw;
+        }
+
+        #next-days-info {
+            div {
+                font-size: 3.5vw;
+                padding: 0.5vw;
+            }
+
+            #next-days-icon-container {
+                margin-top: -6vw;
+            }
+        }
+        #next-days-weather-icon {
+            height: 12.5vw;
+            width: 14vw;
+        }
+    }
+
+    @media (min-width: $min-laptop-width) {
+        .next-days-cta {
+            margin: 0.5vw;
+        }
+
+        #next-days-info {
+            div {
+                font-size: 2.5vw;
+            }
+        }
+    }
+}
+
+
+

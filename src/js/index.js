@@ -10,10 +10,12 @@ const citySelectionPageDom=byId('city-selection-page');
 const localisationCtaDom=byId('localisation-cta');
 const todayFutureSlotsDom=byId("today-future-slots");
 const loaderSectionDom=byId('loader-section');
+const bodyDom=document.querySelector('body');
 
 cityNameSelector.init(onCitySelected);
 
 if (localStorage.mainCityInfo) {
+    bodyDom.classList.add('main-info-page');
     infoAll.classList.remove('hidden');
     const mainInfo=localStorageManager.getStoredObj('mainCityInfo'); 
     const cityName=mainInfo.city;
@@ -21,11 +23,13 @@ if (localStorage.mainCityInfo) {
 } else {
     citySelectionPageDom.classList.remove('hidden');
     localisationCtaDom.classList.remove('hidden');
+    bodyDom.classList.remove('main-info-page');
 }
 localisationCtaDom.addEventListener('click', ()=>{
     loaderSectionDom.classList.remove('hidden');
     localisationInfo.showInfo().then(()=>{
         loaderSectionDom.classList.add('hidden');
+        bodyDom.classList.add('main-info-page');
         citySelectionPageDom.classList.add('hidden');
         infoAll.classList.remove('hidden');
     });  
@@ -37,12 +41,14 @@ function onCitySelected(cityName) {
     loaderSectionDom.classList.remove('hidden');
     weatherInfo.showWeather(cityName).then(()=>{
         loaderSectionDom.classList.add('hidden');
+        bodyDom.classList.add('main-info-page');
         citySelectionPageDom.classList.add('hidden'); 
         infoAll.classList.remove('hidden');
     });
 }
 
 function changeCityFn(){
+    bodyDom.classList.remove('main-info-page');
     infoAll.classList.add('hidden');
     citySelectionPageDom.classList.remove('hidden');
     cityInputDom.value='';

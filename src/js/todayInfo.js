@@ -28,6 +28,9 @@ const directSunsetDom=byId('direct-sunset');
 const directSunriseSunsetDom=byId('direct-sunrise-sunset')
 const directDescriptionDom=byId('direct-description');
 const directInfoDom=byId('direct-info');
+const bodyDom=document.querySelector('body');
+const titlePageDom=document.querySelector('h1');
+const cityNameDom=byId('city-name');
 
 function showInfo(weatherInfo, minMaxInfo, nextDaysInfo) {
     showWeather (weatherInfo);
@@ -67,12 +70,18 @@ function showNightTime(sunsetMillisecs) {
     const date=new Date();
     const now=date.getTime();
     if (sunsetMillisecs<now) {
+        bodyDom.classList.add('night-time');
+        titlePageDom.classList.add('night-time');
+        cityNameDom.classList.add('night-time');
         directWeatherInfoDom.classList.add('night-time');
         directInfoDom.classList.add('night-time');
         directSunriseSunsetDom.classList.add('night-time');
         moonPictureDom.classList.remove('hidden');
         directMainWeatherIconDom.classList.add('hidden');
     } else {
+        bodyDom.classList.remove('night-time');
+        titlePageDom.classList.remove('night-time');
+        cityNameDom.classList.remove('night-time');
         directWeatherInfoDom.classList.remove('night-time');
         directInfoDom.classList.remove('night-time');
         directSunriseSunsetDom.classList.remove('night-time');

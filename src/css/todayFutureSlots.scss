@@ -1,0 +1,59 @@
+#today-future-slots {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    list-style-type: none;
+    padding-inline-start: 0%;
+    background-color: $white-transparent;
+    font-size: 6vw;
+    margin-bottom: 5vw;
+
+    >li {
+        margin: 2vw 0 2vw 5vw;
+    }
+
+    .time-slot-time{
+        display: block;
+        padding: 0.5vw;
+        margin-right: 5vw;
+    }
+    
+    .time-slot-icon {
+        display: block;
+        margin: -1vw 5vw -1vw -3vw;
+        height: 17vw;
+        width: 18vw;
+    }
+    
+    .time-slot-temperature {
+        display: block;
+        padding: 0.5vw;
+        margin-right: 5vw;
+        font-size: 4.5vw;
+    }
+
+    @media (min-width: $min-tablet-width) {
+        font-size: 3.5vw;
+        margin-bottom: 2vw;
+
+        .time-slot-temperature {
+            font-size: 3.5vw;
+        }
+    
+        .time-slot-icon {
+            height: 10vw;
+            width: 9vw;
+            margin-left: -1vw;
+        }
+    }
+
+    @media (min-width: $min-laptop-width) {
+        font-size: 2.5vw;
+        margin-bottom: 2vw;
+
+        .time-slot-temperature {
+            font-size: 2.5vw;
+        }
+    }
+}
+

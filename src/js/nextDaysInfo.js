@@ -19,6 +19,7 @@ const nextDaysFeelsLikeNightDom=byId('next-days-feels-like-night');
 const nextDaysDescriptionDom=byId('next-days-description');
 const nextDaysIconDom=byId('next-days-weather-icon');
 const hideNextDaysDetailsCtaDom=byId('hide-next-days-details-cta');
+const nextDaysSectionDom=byId('next-days-section')
 let daysWeatherInfo;
 
 nextDaysCtaDom.forEach((cta, index)=>{
@@ -26,10 +27,7 @@ nextDaysCtaDom.forEach((cta, index)=>{
         hideNextDaysDetailsCtaDom.classList.remove('hidden');
         showDailyInfo(daysWeatherInfo[index]);
         nextDaysInfoDom.classList.remove('hidden');
-        window.scroll({
-            top: 1000,
-            behavior: 'smooth'
-        });
+        window.scrollTo(0, nextDaysSectionDom.offsetTop-10);
     })
 })
 
@@ -54,13 +52,13 @@ function showDailyInfo(singleDayInfo) {
     nextDaysSunsetDom.innerText=`Sunset: ${singleDayInfo.sunset}`;
     nextDaysHumidityDom.innerText=`Humidity: ${singleDayInfo.humidity}%`;
     nextDaysMorningTempDom.innerText=`Morning: ${singleDayInfo.tempMorn}°`;
-    nextDaysDayTempDom.innerText=`Day: ${singleDayInfo.tempDay}`;
-    nextDaysEveTempDom.innerText=`Evening: ${singleDayInfo.tempEve}`;
-    nextDaysNightTempDom.innerText=`Night: ${singleDayInfo.tempNight}`;
-    nextDaysFeelsLikeMorningDom.innerText=`Morning: ${singleDayInfo.feelsLikeMorn}`;
-    nextDaysFeelsLikeDayDom.innerText=`Day: ${singleDayInfo.feelsLikeDay}`;
-    nextDaysFeelsLikeEveDom.innerText=`Evening: ${singleDayInfo.feelsLikeEve}`;
-    nextDaysFeelsLikeNightDom.innerText=`Night: ${singleDayInfo.feelsLikeNight}`;
+    nextDaysDayTempDom.innerText=`Day: ${singleDayInfo.tempDay}°`;
+    nextDaysEveTempDom.innerText=`Evening: ${singleDayInfo.tempEve}°`;
+    nextDaysNightTempDom.innerText=`Night: ${singleDayInfo.tempNight}°`;
+    nextDaysFeelsLikeMorningDom.innerText=`Morning: ${singleDayInfo.feelsLikeMorn}°`;
+    nextDaysFeelsLikeDayDom.innerText=`Day: ${singleDayInfo.feelsLikeDay}°`;
+    nextDaysFeelsLikeEveDom.innerText=`Evening: ${singleDayInfo.feelsLikeEve}°`;
+    nextDaysFeelsLikeNightDom.innerText=`Night: ${singleDayInfo.feelsLikeNight}°`;
     nextDaysDescriptionDom.innerText=singleDayInfo.description;
     nextDaysIconDom.src=singleDayInfo.iconUrl;
 }

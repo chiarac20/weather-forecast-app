@@ -1,0 +1,182 @@
+#direct-weather-info {
+    $circle-ray: 75vw;
+    border-radius: 50%;
+    width: $circle-ray;
+    height: $circle-ray;
+    margin: auto;
+    background-color: $white-transparent;
+
+    #sun-container {
+        overflow: hidden;
+        height: 23vw;
+        padding-top: 7vw;
+    }
+
+    #sun-info {
+        border: 3px $yellow solid;
+        border-radius: 50%;
+        width: $circle-ray*.8;
+        height: $circle-ray*.8;
+        margin: auto;
+    }
+    
+    #sun-picture {
+        background-color: $yellow;
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        margin-left: 24vw;
+        margin-top: -4vw;
+    }
+    
+    #moon-picture {
+        width: 9vw;
+        height: 9vw;
+        border-radius: 50%;
+        box-shadow: 2vw 2vw 0 0 $yellow;
+        margin-left: 25.5vw;
+        margin-bottom: -14vw;
+    }
+    
+    #direct-sunrise-sunset {
+        font-size: 5vw;
+    }
+
+    #direct-main-weather-icon {
+        height: 17vw;
+        width: 18vw;
+        margin: -8vw -4vw -4vw 2vw;
+    }
+    
+    #direct-current-temperature, #direct-current-time {
+        font-size: 8vw;
+    }
+    
+    #direct-min-max {
+        margin-bottom: 1vw;
+    }
+    
+    #direct-sunset {
+        position:absolute;
+        right: 14.5vw; 
+    }
+    
+    #direct-sunrise {
+        position:absolute;
+        left: 14.5vw; 
+    }
+
+    &.night-time {
+        color: $white-transparent;
+        background-image: linear-gradient(45deg, rgb(10, 10, 10), rgb(20, 20, 100));
+    }
+
+    #direct-sunrise-sunset.night-time {
+        color: $white-transparent;  
+    }
+
+    #direct-info {
+        width: 40vw;
+        height: 45vw;
+        margin: auto;
+        margin-top: -12vw;
+        text-align: center;
+        font-size: 5vw;
+
+        >div {
+            padding: 1.6vw;
+        }
+    }
+
+    @media (min-width: $min-tablet-width) {
+        $circle-ray: 45vw;
+        width: $circle-ray;
+        height: $circle-ray;
+
+        #sun-container {
+            height: 15vw;
+            padding-top: 6vw;
+        }
+
+        #sun-picture {
+            width: 4vw;
+            height: 4vw;
+            margin-left: 17vw;
+            margin-top: -2vw;
+        }
+        
+        #sun-info {
+            width: $circle-ray*.8;
+            height: $circle-ray*.8;
+        }
+        
+        #direct-info {
+            font-size: 2.5vw;
+            margin-left: 2vw;
+        }
+
+        #direct-sunrise-sunset {
+            font-size: 2.5vw;
+        }
+    
+        #direct-sunset {
+            position:absolute;
+            right: 27.5vw; 
+        }
+        
+        #direct-sunrise {
+            position:absolute;
+            left: 27.5vw; 
+        }
+
+        #direct-main-weather-icon {
+            height: 7vw;
+            width: 8vw;
+        }
+        
+        #direct-current-temperature, #direct-current-time {
+            font-size: 3vw;
+        } 
+    }
+
+    @media (min-width: $min-laptop-width) {
+        $circle-ray: 35vw;
+        width: $circle-ray;
+        height: $circle-ray;
+
+        #sun-container {
+            height: 12vw;
+            padding-top: 4vw;
+        }
+        
+        #sun-info {
+            width: $circle-ray*.8;
+            height: $circle-ray*.8;
+        }
+
+        #direct-sunrise-sunset {
+            font-size: 1.8vw;
+        }
+
+        #direct-info {
+            font-size: 1.8vw;
+            margin-left: -2vw;
+        }
+        #direct-sunset {
+            position:absolute;
+            right: 33vw; 
+        }
+        
+        #direct-sunrise {
+            position:absolute;
+            left: 33vw; 
+        }
+
+        #direct-current-temperature, #direct-current-time {
+            font-size: 2.5vw;
+        } 
+    }
+}
+
+
+

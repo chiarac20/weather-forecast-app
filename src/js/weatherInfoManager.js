@@ -8,7 +8,8 @@ import dailyInfo from './dailyInfoMapper';
 
 const showTodayDetailsCtaDom=byId('show-today-details-cta');
 const hideTodayDetailsCtaDom=byId('hide-today-details-cta');
-const todayWeatherDetailsDom=byId('today-weather-details');
+const todayDetailsDom=byId('today-details');
+const todayDetailsSectionDom=byId('today-details-section');
 
 function init(onGoBackCta){
     const ctaDom=byId('go-back-cta');
@@ -18,19 +19,17 @@ function init(onGoBackCta){
 }
 
 function showTodayDetails () {
+    window.todayDetailsSectionDom = todayDetailsSectionDom;
     hideTodayDetailsCtaDom.classList.remove('hidden');
     showTodayDetailsCtaDom.classList.add('hidden');
-    todayWeatherDetailsDom.classList.remove('hidden');
-    window.scroll({
-        top: 1000,
-        behavior: 'smooth'
-      });
+    todayDetailsDom.classList.remove('hidden');
+    window.scrollTo(0, todayDetailsSectionDom.offsetTop-10);
 }
 
 function hideTodayDetails () {
     hideTodayDetailsCtaDom.classList.add('hidden');
     showTodayDetailsCtaDom.classList.remove('hidden');
-    todayWeatherDetailsDom.classList.add('hidden');
+    todayDetailsDom.classList.add('hidden');
 }
 
 
