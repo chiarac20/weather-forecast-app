@@ -29,7 +29,7 @@ function showInfo(slots) {
         icon.classList.add('time-slot-icon');
         const temperature=document.createElement('span');
         slotLi.appendChild(temperature);
-        temperature.innerText=slot.temperature + 'C';
+        temperature.innerText=slot.temperature;
         temperature.classList.add('time-slot-temperature');
     })
 }

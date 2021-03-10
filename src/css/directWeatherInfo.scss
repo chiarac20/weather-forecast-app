@@ -45,7 +45,7 @@
     #direct-main-weather-icon {
         height: 17vw;
         width: 18vw;
-        margin: -8vw -4vw -4vw 2vw;
+        margin: -4vw -4vw -4vw 2vw;
     }
     
     #direct-current-temperature, #direct-current-time {
@@ -79,12 +79,12 @@
         width: 40vw;
         height: 45vw;
         margin: auto;
-        margin-top: -12vw;
+        margin-top: -19vw;
         text-align: center;
         font-size: 5vw;
 
         >div {
-            padding: 1.6vw;
+            padding: 2vw 0;
         }
     }
 
@@ -120,8 +120,11 @@
         
         #direct-info {
             font-size: 2.5vw;
-            margin-left: 2vw;
-            margin-top: -6vw;
+            margin-top: -10vw;
+
+            >div {
+                padding: 1.5vw 0;
+            }
         }
 
         #direct-sunrise-sunset {
@@ -141,6 +144,7 @@
         #direct-main-weather-icon {
             height: 7vw;
             width: 8vw;
+            margin-bottom: -2vw;
         }
         
         #direct-current-temperature, #direct-current-time {

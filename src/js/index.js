@@ -32,7 +32,7 @@ localisationCtaDom.addEventListener('click', ()=>{
         bodyDom.classList.add('main-info-page');
         citySelectionPageDom.classList.add('hidden');
         infoAll.classList.remove('hidden');
-    });  
+    }, (err=>{alert('Please enter a valid UK city')})); 
 })
 
 weatherInfo.init(changeCityFn)

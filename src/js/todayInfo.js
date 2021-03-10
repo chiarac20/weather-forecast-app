@@ -45,7 +45,7 @@ function showWeather(weatherInfo) {
     directCurrentTempDom.innerText=todayInfo.temperature;
     directMainWeatherIconDom.src=todayInfo.iconUrl;
     directDescriptionDom.innerText=todayInfo.description;
-    directCurrentDateDom.innerText=todayInfo.date;
+    directCurrentDateDom.innerText=new Date().toDateString();
     directSunriseDom.innerText=allDaysInfo.sunrise;
     directSunsetDom.innerText=allDaysInfo.sunset;
     currentDateDom.innerText='Date: '+ todayInfo.date;
@@ -64,7 +64,6 @@ function showWeather(weatherInfo) {
     const mappedTodayTimeSlotsInfo=todayFutureSlots.mapInfo(mainInfo, todayInfo.date);
     todayFutureSlots.showInfo(mappedTodayTimeSlotsInfo);
 }
-
 
 function showNightTime(sunsetMillisecs) {
     const date=new Date();

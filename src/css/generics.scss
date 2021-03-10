@@ -5,7 +5,8 @@
 body {
     max-width: 100%;
     color: $text-colour;
-    font: 6vw $bodyFont;
+    font-family: $bodyFont;
+    font-size: 6vw;
     margin: 5vw;
     background-color:  rgb(170, 170, 255);
 }
@@ -24,7 +25,8 @@ h3 {
 }
 
 button, input {
-    font: 5vw $bodyFont;
+    font-size: 5vw; 
+    font-family: $bodyFont;
     padding: 3vw;
     margin: 5vw 0;
     color: $text-colour;
