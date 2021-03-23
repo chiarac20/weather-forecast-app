@@ -2,6 +2,7 @@ import sunRotationManager from './sunRotation';
 import {byId} from './domManager';
 import todayFutureSlots from './todayFutureSlots';
 import nextDays from './nextDaysInfo';
+import classNames from './classNames';
 
 const currentTimeDom=byId('current-time');
 const minMaxDom=byId('min-max-today');
@@ -12,7 +13,8 @@ const sunriseDom=byId('sunrise-time');
 const currentTempDom=byId('current-temperature');
 const feelsLikeDom=byId('feels-like');
 const descriptionDom=byId('description');
-const windSpeedDom=byId('wind-speed');
+const windSpeedKmDom=byId('wind-speed-km');
+const windSpeedMphDom=byId('wind-speed-mph');
 const humidityDom=byId('humidity');
 const iconDom=byId('main-weather-icon');
 const windDirectionDom=byId('wind-direction');
@@ -48,15 +50,16 @@ function showWeather(weatherInfo) {
     directCurrentDateDom.innerText=new Date().toDateString();
     directSunriseDom.innerText=allDaysInfo.sunrise;
     directSunsetDom.innerText=allDaysInfo.sunset;
-    currentDateDom.innerText='Date: '+ todayInfo.date;
-    currentTempDom.innerText='Current temp: '+ todayInfo.temperature;
-    feelsLikeDom.innerText='Feels like: ' + todayInfo.feels_like;
-    humidityDom.innerText='Humidity: ' + todayInfo.humidity;
+    currentDateDom.innerText=todayInfo.date;
+    currentTempDom.innerText=todayInfo.temperature;
+    feelsLikeDom.innerText=todayInfo.feels_like;
+    humidityDom.innerText=todayInfo.humidity;
     descriptionDom.innerText=todayInfo.description;
-    windSpeedDom.innerText='Wind speed: ' + todayInfo.windMph + ' ' + todayInfo.windKmPerHour;
-    windDirectionDom.innerText='Wind direction: ' + todayInfo.windDirection;
-    sunriseDom.innerText='Sunrise: ' + allDaysInfo.sunrise; 
-    sunsetDom.innerText='Sunset: ' + allDaysInfo.sunset;
+    windSpeedKmDom.innerText=todayInfo.windKmPerHour;
+    windSpeedMphDom.innerText=todayInfo.windMph;
+    windDirectionDom.innerText=todayInfo.windDirection;
+    sunriseDom.innerText=allDaysInfo.sunrise; 
+    sunsetDom.innerText=allDaysInfo.sunset;
     iconDom.src=todayInfo.iconUrl;
     setUpTimeUpdate(); 
     rotateSun(allDaysInfo);
@@ -69,23 +72,23 @@ function showNightTime(sunsetMillisecs) {
     const date=new Date();
     const now=date.getTime();
     if (sunsetMillisecs<now) {
-        bodyDom.classList.add('night-time');
-        titlePageDom.classList.add('night-time');
-        cityNameDom.classList.add('night-time');
-        directWeatherInfoDom.classList.add('night-time');
-        directInfoDom.classList.add('night-time');
-        directSunriseSunsetDom.classList.add('night-time');
-        moonPictureDom.classList.remove('hidden');
-        directMainWeatherIconDom.classList.add('hidden');
+        bodyDom.classList.add(classNames.night);
+        titlePageDom.classList.add(classNames.night);
+        cityNameDom.classList.add(classNames.night);
+        directWeatherInfoDom.classList.add(classNames.night);
+        directInfoDom.classList.add(classNames.night);
+        directSunriseSunsetDom.classList.add(classNames.night);
+        moonPictureDom.classList.remove(classNames.hidden);
+        directMainWeatherIconDom.classList.add(classNames.hidden);
     } else {
-        bodyDom.classList.remove('night-time');
-        titlePageDom.classList.remove('night-time');
-        cityNameDom.classList.remove('night-time');
-        directWeatherInfoDom.classList.remove('night-time');
-        directInfoDom.classList.remove('night-time');
-        directSunriseSunsetDom.classList.remove('night-time');
-        moonPictureDom.classList.add('hidden');
-        directMainWeatherIconDom.classList.remove('hidden');
+        bodyDom.classList.remove(classNames.night);
+        titlePageDom.classList.remove(classNames.night);
+        cityNameDom.classList.remove(classNames.night);
+        directWeatherInfoDom.classList.remove(classNames.night);
+        directInfoDom.classList.remove(classNames.night);
+        directSunriseSunsetDom.classList.remove(classNames.night);
+        moonPictureDom.classList.add(classNames.hidden);
+        directMainWeatherIconDom.classList.remove(classNames.hidden);
     }   
 }
 
@@ -104,7 +107,7 @@ function setUpTimeUpdate() {
 function showTime() { 
     const time=getTimeFromDate(new Date);
     const now=time.hours + ':' + time.minutes;
-    currentTimeDom.innerText='Current time: ' + now;
+    currentTimeDom.innerText=now;
     directCurrentTimeDom.innerText=now;
 }
 
@@ -120,7 +123,7 @@ function zeroFill(number) {
 
 function showMinMax(minMaxInfo) {
     const minMax=minMaxInfo.min + '°/' + minMaxInfo.max + '°';
-    minMaxDom.innerText='Min/Max: '+ minMax;
+    minMaxDom.innerText=minMax;
     directMinMaxDom.innerText=minMax;
 }
 

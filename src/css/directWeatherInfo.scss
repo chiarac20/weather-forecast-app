@@ -34,8 +34,7 @@
         height: 9vw;
         border-radius: 50%;
         box-shadow: 2vw 2vw 0 0 $yellow;
-        margin-left: 25.5vw;
-        margin-bottom: -14vw;
+        transform: translateY(-4vw);
     }
     
     #direct-sunrise-sunset {
@@ -50,10 +49,6 @@
     
     #direct-current-temperature, #direct-current-time {
         font-size: 8vw;
-    }
-    
-    #direct-min-max {
-        margin-bottom: 1vw;
     }
     
     #direct-sunset {
@@ -75,16 +70,18 @@
         color: $white-transparent;  
     }
 
-    #direct-info {
+    .direct-info {
         width: 40vw;
         height: 45vw;
         margin: auto;
-        margin-top: -19vw;
+        margin-top: -13vw;
         text-align: center;
         font-size: 5vw;
 
         >div {
-            padding: 2vw 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2vw;
         }
     }
 
@@ -106,25 +103,20 @@
         }
 
         #moon-picture {
-            width: 10px;
-            height: 10px;
-            box-shadow: 5px 5px 0 0 $yellow;
-            margin-bottom: -12vw;
-            transform: translate(-10px, -10px);
+            width: 3.5vw;
+            height: 3.5vw;
+            box-shadow: 1vw 1vw 0 0 $yellow;
+            transform: translate(1vw, -2vw);
         }
-
+        
         #sun-info {
             width: $circle-ray*.8;
             height: $circle-ray*.8;
         }
         
-        #direct-info {
+        .direct-info {
             font-size: 2.5vw;
             margin-top: -10vw;
-
-            >div {
-                padding: 1.5vw 0;
-            }
         }
 
         #direct-sunrise-sunset {
@@ -167,18 +159,15 @@
             height: $circle-ray*.8;
         }
 
-        #moon-picture {
-            margin-bottom: -8vw;
-        }
-
         #direct-sunrise-sunset {
             font-size: 1.8vw;
         }
 
-        #direct-info {
+        .direct-info {
             font-size: 1.8vw;
             margin-left: -2vw;
         }
+
         #direct-sunset {
             position:absolute;
             right: 33vw; 

@@ -10,11 +10,9 @@ function init(onClick) {
 
 function initInputSelector(onClick) {
     cityInputDom.addEventListener('keyup', ()=>{
+        citiesListDom.innerText='';
         const cityNameInitials=cityInputDom.value.toLowerCase();
-        if (cityNameInitials.length<3) {
-            citiesListDom.innerText='';
-        } else {
-            citiesListDom.innerText='';
+        if (cityNameInitials.length>=3) {
             const suggestedCityNames=suggestCityNames(cityNameInitials);
             suggestedCityNames.forEach(city=>{
                 showSuggestedCities(city, onClick);

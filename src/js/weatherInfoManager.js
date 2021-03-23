@@ -5,6 +5,7 @@ import infoMapper from './weatherInfoMapper';
 import localStorageManager from './manageLocalStorage';
 import todayInfo from './todayInfo';
 import dailyInfo from './dailyInfoMapper';
+import classNames from './classNames';
 
 const showTodayDetailsCtaDom=byId('show-today-details-cta');
 const hideTodayDetailsCtaDom=byId('hide-today-details-cta');
@@ -20,16 +21,16 @@ function init(onGoBackCta){
 
 function showTodayDetails () {
     window.todayDetailsSectionDom = todayDetailsSectionDom;
-    hideTodayDetailsCtaDom.classList.remove('hidden');
-    showTodayDetailsCtaDom.classList.add('hidden');
-    todayDetailsDom.classList.remove('hidden');
+    hideTodayDetailsCtaDom.classList.remove(classNames.hidden);
+    showTodayDetailsCtaDom.classList.add(classNames.hidden);
+    todayDetailsDom.classList.remove(classNames.hidden);
     window.scrollTo(0, todayDetailsSectionDom.offsetTop-10);
 }
 
 function hideTodayDetails () {
-    hideTodayDetailsCtaDom.classList.add('hidden');
-    showTodayDetailsCtaDom.classList.remove('hidden');
-    todayDetailsDom.classList.add('hidden');
+    hideTodayDetailsCtaDom.classList.add(classNames.hidden);
+    showTodayDetailsCtaDom.classList.remove(classNames.hidden);
+    todayDetailsDom.classList.add(classNames.hidden);
 }
 
 

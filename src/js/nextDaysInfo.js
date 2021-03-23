@@ -1,5 +1,6 @@
 import {byClass} from './domManager';
 import {byId} from './domManager';
+import classNames from './classNames';
 
 const nextDaysInfoDom=byId('next-days-info');
 const nextDaysCtaDom=byClass('next-days-cta');
@@ -24,16 +25,16 @@ let daysWeatherInfo;
 
 nextDaysCtaDom.forEach((cta, index)=>{
     cta.addEventListener('click', ()=>{
-        hideNextDaysDetailsCtaDom.classList.remove('hidden');
+        hideNextDaysDetailsCtaDom.classList.remove(classNames.hidden);
         showDailyInfo(daysWeatherInfo[index]);
-        nextDaysInfoDom.classList.remove('hidden');
+        nextDaysInfoDom.classList.remove(classNames.hidden);
         window.scrollTo(0, nextDaysSectionDom.offsetTop-10);
     })
 })
 
 hideNextDaysDetailsCtaDom.addEventListener('click', ()=>{
-    nextDaysInfoDom.classList.add('hidden');
-    hideNextDaysDetailsCtaDom.classList.add('hidden');
+    nextDaysInfoDom.classList.add(classNames.hidden);
+    hideNextDaysDetailsCtaDom.classList.add(classNames.hidden);
 })
 
 function showNextDays(info) {
@@ -47,18 +48,18 @@ function showNextDays(info) {
 
 function showDailyInfo(singleDayInfo) {
     nextDaysDateDom.innerText=singleDayInfo.date;
-    nextDaysMinMaxDom.innerText=`Min/Max: ${singleDayInfo.min}°/${singleDayInfo.max}°`;
-    nextDaysSunriseDom.innerText=`Sunrise: ${singleDayInfo.sunrise}`;
-    nextDaysSunsetDom.innerText=`Sunset: ${singleDayInfo.sunset}`;
-    nextDaysHumidityDom.innerText=`Humidity: ${singleDayInfo.humidity}%`;
-    nextDaysMorningTempDom.innerText=`Morning: ${singleDayInfo.tempMorn}°`;
-    nextDaysDayTempDom.innerText=`Day: ${singleDayInfo.tempDay}°`;
-    nextDaysEveTempDom.innerText=`Evening: ${singleDayInfo.tempEve}°`;
-    nextDaysNightTempDom.innerText=`Night: ${singleDayInfo.tempNight}°`;
-    nextDaysFeelsLikeMorningDom.innerText=`Morning: ${singleDayInfo.feelsLikeMorn}°`;
-    nextDaysFeelsLikeDayDom.innerText=`Day: ${singleDayInfo.feelsLikeDay}°`;
-    nextDaysFeelsLikeEveDom.innerText=`Evening: ${singleDayInfo.feelsLikeEve}°`;
-    nextDaysFeelsLikeNightDom.innerText=`Night: ${singleDayInfo.feelsLikeNight}°`;
+    nextDaysMinMaxDom.innerText=`${singleDayInfo.min}°/${singleDayInfo.max}°`;
+    nextDaysSunriseDom.innerText=singleDayInfo.sunrise;
+    nextDaysSunsetDom.innerText=singleDayInfo.sunset;
+    nextDaysHumidityDom.innerText=singleDayInfo.humidity;
+    nextDaysMorningTempDom.innerText=singleDayInfo.tempMorn;
+    nextDaysDayTempDom.innerText=singleDayInfo.tempDay;
+    nextDaysEveTempDom.innerText=singleDayInfo.tempEve;
+    nextDaysNightTempDom.innerText=singleDayInfo.tempNight;
+    nextDaysFeelsLikeMorningDom.innerText=singleDayInfo.feelsLikeMorn;
+    nextDaysFeelsLikeDayDom.innerText=singleDayInfo.feelsLikeDay;
+    nextDaysFeelsLikeEveDom.innerText=singleDayInfo.feelsLikeEve;
+    nextDaysFeelsLikeNightDom.innerText=singleDayInfo.feelsLikeNight;
     nextDaysDescriptionDom.innerText=singleDayInfo.description;
     nextDaysIconDom.src=singleDayInfo.iconUrl;
 }

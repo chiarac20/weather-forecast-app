@@ -32,11 +32,13 @@
                 <div id="direct-sunrise-sunset"> 
                     <span id="direct-sunrise"></span><span id="direct-sunset"></span>
                 </div>
-                <section id="direct-info"> 
-                    <div id="moon-picture" class="hidden"></div>
+                <section id="direct-info" class="direct-info"> 
                     <div id="direct-min-max"></div>
-                    <span id="direct-current-temperature"></span> 
-                    <img id="direct-main-weather-icon">
+                    <div>
+                        <span id="direct-current-temperature"></span>° 
+                        <div id="moon-picture" class="hidden"></div>
+                        <img id="direct-main-weather-icon">
+                    </div>
                     <div id="direct-description"></div>
                     <div id="direct-current-time"></div>
                     <div id="direct-current-date"></div>
@@ -47,20 +49,51 @@
                 <button id="show-today-details-cta" class="today-details-cta">More details</button>
                 <button id="hide-today-details-cta" class="hidden today-details-cta">Hide details</button>
                 <section id="today-details" class="hidden">
-                    <div id="current-time"></div>
-                    <div id="current-date"></div>
-                    <div id="sunrise-time"></div>
-                    <div id="sunset-time"></div>
-                    <div id="min-max-today"></div>
-                    <div id="current-temperature"></div>
-                    <div id="feels-like"></div>
+                    <div>
+                        Current time:
+                        <span id="current-time"></span>
+                    </div>
+                    <div>
+                        Date:
+                        <span id="current-date"></span>
+                    </div>
+                    <div>
+                        Sunrise:
+                        <span id="sunrise-time"></span>
+                    </div>
+                    <div>
+                        Sunset:
+                        <span id="sunset-time"></span>
+                    </div>
+                    <div>
+                        Min/Max:
+                        <span id="min-max-today"></span>
+                    </div>
+                    <div>
+                        Current temp:
+                        <span id="current-temperature"></span>°
+                    </div>
+                    <div>
+                        Feels like:
+                        <span id="feels-like"></span>°
+                    </div>
                     <div id="today-icon-container">
                         <span id="description"></span>
                         <img id="main-weather-icon">
                     </div>
-                    <div id="humidity"></div>
-                    <div id="wind-speed"></div>
-                    <div id="wind-direction"></div>
+                    <div>
+                        Humidity:
+                        <span id="humidity"></span>%
+                    </div>
+                    <div>
+                        Wind-speed:
+                        <span id="wind-speed-km"></span> KmPerHour/
+                        <span id="wind-speed-mph"></span> Mph
+                    </div>
+                    <div>
+                        Wind direction:
+                        <span id="wind-direction"></span>
+                    </div>
                 </section>  
             </section>        
         </section>
@@ -76,28 +109,67 @@
                 <button class="next-days-cta"></button>
             </div>
             <div id="next-days-info" class="hidden">
-                <div id="next-days-date" class="next-days-info"></div>
-                <div id="next-days-min-max" class="next-days-info"></div>
-                <div id="next-days-sunrise" class="next-days-info"></div>
-                <div id="next-days-sunset" class="next-days-info"></div>
-                <div id="next-days-humidity" class="next-days-info"></div>
-                <div id="next-days-icon-container"class="next-days-info">
+                <div class="next-days-info">
+                    Date:
+                    <span id="next-days-date" ></span>
+                </div>
+                <div class="next-days-info">
+                    Min/Max:
+                    <span id="next-days-min-max" ></span>
+                </div>
+                <div class="next-days-info">
+                    Sunrise:
+                    <span id="next-days-sunrise" ></span>
+                </div>
+                <div class="next-days-info">
+                    Sunset:
+                    <span id="next-days-sunset" ></span>
+                </div>
+                <div class="next-days-info">
+                    Humidity:
+                    <span id="next-days-humidity" ></span>%
+                </div>
+                <div id="next-days-icon-container">
                     <span id="next-days-description"></span>   
                     <img id="next-days-weather-icon">
                 </div> 
                 <fieldset id="next-days-temperature" class="next-days-info">
                     <legend  class="next-days-info">Temperature</legend>
-                    <div id="next-days-temperature-morning" class="next-days-info"></div>
-                    <div id="next-days-temperature-day" class="next-days-info"></div>
-                    <div id="next-days-temperature-evening" class="next-days-info"></div>
-                    <div id="next-days-temperature-night" class="next-days-info"></div>
+                    <div class="next-days-info">
+                        Morning:
+                        <span id="next-days-temperature-morning"></span>°
+                    </div>
+                    <div class="next-days-info">
+                        Day:
+                        <span id="next-days-temperature-day"></span>°
+                    </div>
+                    <div class="next-days-info">
+                       Evening:
+                        <span id="next-days-temperature-evening"></span>°
+                    </div>
+                    <div class="next-days-info">
+                        Night:
+                        <span id="next-days-temperature-night"></span>°
+                    </div>
                 </fieldset>
                 <fieldset id="next-days-feels-like" class="next-days-info">
                     <legend class="next-days-info">Feels like</legend>
-                    <div id="next-days-feels-like-morning" class="next-days-info"></div>
-                    <div id="next-days-feels-like-day" class="next-days-info"></div>
-                    <div id="next-days-feels-like-evening" class="next-days-info"></div>
-                    <div id="next-days-feels-like-night" class="next-days-info"></div>
+                    <div class="next-days-info">
+                        Morning:
+                        <span id="next-days-feels-like-morning"></span>°
+                    </div>
+                    <div class="next-days-info">
+                        Day:
+                        <span id="next-days-feels-like-day"></span>°
+                    </div>
+                    <div class="next-days-info">
+                        Evening:
+                        <span id="next-days-feels-like-evening"></span>°
+                    </div>
+                    <div class="next-days-info">
+                        Night:
+                        <span id="next-days-feels-like-night"></span>°
+                    </div>
                 </fieldset>
             </div>  
         </section>

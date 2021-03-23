@@ -19,13 +19,13 @@ function mapInfo(mainForecast) {
         return {
             date: new Date(date).toDateString(),
             time: time[0] + ':' + time[1],
-            feels_like: timeLapse.main.feels_like.toFixed(1) + '°',
-            humidity: timeLapse.main.humidity + '%',
-            temperature: timeLapse.main.temp.toFixed(1) + '°',
+            feels_like: timeLapse.main.feels_like.toFixed(1),
+            humidity: timeLapse.main.humidity,
+            temperature: timeLapse.main.temp.toFixed(1),
             description: timeLapse.weather[0].description,
             iconUrl: `${config.iconUrlStart}${timeLapse.weather[0].icon}${config.iconUrlEnd}`,
-            windMph: (windSpeed * 2.237).toFixed(1) + 'Mph/',
-            windKmPerHour: (windSpeed * 3.6).toFixed(1) + 'KmPerHour',
+            windMph: (windSpeed * 2.237).toFixed(1),
+            windKmPerHour: (windSpeed * 3.6).toFixed(1),
             windDirection
         }
     })
